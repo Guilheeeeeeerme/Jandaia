@@ -4,17 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'produtos',
     pathMatch: 'full'
   },
-  {
-    path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
-  },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  }
+  { path: 'produtos', loadChildren: './produtos/produtos.module#ProdutosPageModule' },
+  { path: 'blog', loadChildren: './blog/blog.module#BlogPageModule' },
+  { path: 'agenda', loadChildren: './agenda/agenda.module#AgendaPageModule' },
+  { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
+  { path: 'conta', loadChildren: './conta/conta.module#ContaPageModule' }
 ];
 
 @NgModule({
