@@ -6,11 +6,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ProdutosPage } from './produtos.page';
-// import { JandaiaApiService } from '../jandaia-api.service';
-import { AppModule } from '../app.module';
 import { JandaiaAPIService } from '../jandaia-api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SppinerService } from '../sppiner.service';
+import { SharedModule } from '../shared/shared.module';
+import { HifenissuePipe } from '../hifenissue.pipe';
 
 const routes: Routes = [
   {
@@ -25,9 +25,13 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
-  declarations: [ProdutosPage],
+  declarations: [
+    ProdutosPage
+  ],
+  exports: [HifenissuePipe],
   providers: [
     JandaiaAPIService,
     SppinerService

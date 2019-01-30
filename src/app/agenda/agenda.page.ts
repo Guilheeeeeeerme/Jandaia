@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SppinerService } from '../sppiner.service';
 
 @Component({
   selector: 'app-agenda',
@@ -7,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgendaPage implements OnInit {
 
-  constructor() {
-  }
+  constructor(private sppinerService: SppinerService) { }
 
   ngOnInit() {
+    this.sppinerService.hide();
   }
 
 }

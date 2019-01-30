@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { Facebook } from '@ionic-native/facebook/ngx';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ContaPage } from './conta.page';
+import { JogoPage } from './jogo.page';
+import { SppinerService } from '../sppiner.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: ContaPage
+    component: JogoPage
   }
 ];
 
@@ -20,11 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ],
-  declarations: [ContaPage],
-  providers: [
-    Facebook
-  ]
+  providers: [SppinerService],
+  declarations: [JogoPage]
 })
-export class ContaPageModule {}
+export class JogoPageModule {}

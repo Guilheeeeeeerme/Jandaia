@@ -1,12 +1,50 @@
 <ion-header>
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Agenda</ion-title>
-    </ion-toolbar>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      <img class="title-image" alt="logo" height="40" src="assets/images/jandaia.png">
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <button ion-button icon-only (click)="addEvent()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding >
+<ion-content padding>
+  <calendar 
+    [eventSource]="eventSource" 
+    [calendarMode]="calendar.mode"
+    [currentDate]="calendar.currentDate"
+    (onEventSelected)="onEventSelected($event)"
+    (onTimeSelected)="onTimeSelected($event)"
+    step="30"
+    class="calendar"
+    >
+  </calendar>
+
+  AGENDA
++ Adicionar compromisso
+	Tipo: 
+		- Prova
+		- Trabalho
+	Quando:
+		- Data:
+		- Horário:
+	Detalhes:
+		- Matéria:
+			- Matemática
+			- Português
+		- Observações:
+
+Criar alerta [  ] SIM
+
 
 </ion-content>

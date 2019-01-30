@@ -10,6 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { JandaiaAPIService } from './jandaia-api.service';
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { FacebookLoginService } from './facebook-login.service';
+import { ProductDetailsPageModule } from './product-details/product-details.module';
+import { CrudEventPageModule } from './crud-event/crud-event.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,13 +22,17 @@ import { JandaiaAPIService } from './jandaia-api.service';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CrudEventPageModule,
+    ProductDetailsPageModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    JandaiaAPIService
+    JandaiaAPIService,
+    Facebook,
+    FacebookLoginService
   ],
   exports: [],
   bootstrap: [AppComponent]

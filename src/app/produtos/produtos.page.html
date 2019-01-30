@@ -1,21 +1,38 @@
 <ion-header>
   <ion-toolbar color="primary">
+
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Produtos</ion-title>
+
+    <ion-title>
+      <img class="title-image" alt="logo" height="40" src="assets/images/jandaia.png">
+    </ion-title>
+
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content padding>
 
   <ion-list>
+
+    <ion-label>Categorias</ion-label>
+    <ion-select multiple="true" cancelText="Sair" [(ngModel)]="s_categoria_produtos" (ionChange)="getProducts(page)"
+      okText="Buscar">
+      <ion-select-option value="22">Agendas</ion-select-option>
+      <ion-select-option value="26">Cadernos</ion-select-option>
+      <ion-select-option value="25">Escritório</ion-select-option>
+      <ion-select-option value="23">Gifts</ion-select-option>
+      <ion-select-option value="24">Papéis</ion-select-option>
+    </ion-select>
+
     <ion-item *ngFor="let product of products">
-      <ion-card class="welcome-card">
+      <ion-card class="welcome-card" (click)="openProduct(product)">
         <ion-img src="{{product.image}}"></ion-img>
         <ion-card-header>
           <!-- <ion-card-subtitle>Get Started</ion-card-subtitle> -->
-          <ion-card-title>{{ product.title }}</ion-card-title>
+          <ion-card-title>{{ product.title | hifenissue }}</ion-card-title>
         </ion-card-header>
         <!-- <ion-card-content>
               <p>Now that your app has been created, you'll want to start building out features and components. Check out
@@ -23,6 +40,11 @@
             </ion-card-content> -->
       </ion-card>
     </ion-item>
+
+    <ion-item *ngIf="!products || products.length == 0">
+      Nenhum produto encontrado para a sua busca
+    </ion-item>
+
   </ion-list>
 
 </ion-content>
