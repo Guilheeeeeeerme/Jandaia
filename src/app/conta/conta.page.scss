@@ -1,6 +1,10 @@
 body { padding: 2em; }
-
-
+img { width: 60%; }
+ion-content {
+  padding: 0px;
+  background-image: url('../../assets/imgs/bg_login.png');
+  background-size: cover;
+}
 /* Shared */
 .loginBtn {
   box-sizing: border-box;
