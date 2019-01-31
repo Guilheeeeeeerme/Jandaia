@@ -14,18 +14,43 @@
     	<img src="assets/imgs/logo-jandaia-digital.png"/>
     </ion-col>
   </ion-row>
+  
   <ion-row>
-	<ion-col text-center>
-		Faça seu login
-	</ion-col>
+	  <ion-col text-center>
+		  Faça seu login
+	  </ion-col>
   </ion-row>
+
   <ion-row>
     <ion-col text-center>
-		<button ion-button block (click)="loginFb()" class="loginBtn loginBtn--facebook">
-    		Login with Facebook
-  		</button>
-  	</ion-col>
-</ion-row>
+      <ion-item>
+        <ion-label>Usuário</ion-label>
+        <ion-input type="text" name="user"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
 
+  <ion-row>
+    <ion-col text-center>
+      <ion-item>
+        <ion-label>Senha</ion-label>
+        <ion-input type="password" name="pass"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button type="submit" block>Add Todo</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col text-center>
+  		<button ion-button block (click)="loginFb()" class="loginBtn loginBtn--facebook">
+      	Login with Facebook
+    	</button>
+  	</ion-col>
+  </ion-row>
 
 </ion-content>
