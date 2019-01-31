@@ -24,13 +24,14 @@ export class BlogPage implements OnInit {
   getBlogPosts (page: number) {
 
     this. hasBack = page > 1;
-
     this.sppinerService.show();
+
     this.jandaiaApiService.getBlogPosts(page).subscribe((posts: any[]) => {
       this.posts = posts;
       this.hasNext = posts.length === 10;
       this.sppinerService.hide();
     });
+
   }
 
 }

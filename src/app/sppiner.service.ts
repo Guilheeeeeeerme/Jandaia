@@ -18,7 +18,7 @@ export class SppinerService {
   hide() {
     $('.page-loader').animate({
       opacity: 0,
-    }, 2000, () => {
+    }, 1000, () => {
       $('.page-loader').css('display', 'none');
     });
   }

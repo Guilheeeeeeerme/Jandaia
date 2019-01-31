@@ -1,12 +1,47 @@
 <ion-header>
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Agenda</ion-title>
-    </ion-toolbar>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title text-center>
+      <img class="title-image" alt="logo" height="40" src="assets/images/jandaia.png">
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="addEvent()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding >
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item *ngIf="!events || events.length == 0">
+      <ion-label> Nenhum compromisso registrado</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="!events || events.length == 0">
+      <ion-button (click)="addEvent()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item *ngFor="let event of events">
+      <div slot="start" color="danger" (click)="updateEvent(event)">
+        <ion-label>{{ event.tipo }}</ion-label>
+        <p>{{ event.dia }} {{ event.hora }}</p>
+      </div>
+      <ion-button slot="end" color="danger" (click)="deleteEvent(event)">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
 
 </ion-content>

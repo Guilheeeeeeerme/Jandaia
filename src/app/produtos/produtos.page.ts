@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { JandaiaAPIService } from '../jandaia-api.service';
 import { SppinerService } from '../sppiner.service';
-// import { JandaiaApiService } from '../jandaia-api.service';
+import { ModalController } from '@ionic/angular';
+import { ProductDetailsPage } from '../product-details/product-details.page';
 
 @Component({
   selector: 'app-produtos',
@@ -11,11 +12,15 @@ import { SppinerService } from '../sppiner.service';
 export class ProdutosPage implements OnInit {
 
   products: any = [];
+  s_categoria_produtos = ['26'];
   page: number;
   hasNext: boolean;
   hasBack: boolean;
 
-  constructor(private jandaiaApiService: JandaiaAPIService, private sppinerService: SppinerService) { }
+  constructor(
+    private jandaiaApiService: JandaiaAPIService, 
+    private sppinerService: SppinerService, 
+    private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.page = 1;
@@ -27,17 +32,23 @@ export class ProdutosPage implements OnInit {
     this. hasBack = page > 1;
 
     this.sppinerService.show();
-    this.jandaiaApiService.getProducts(page).subscribe((products: any[]) => {
-
-      products = products.map((produto) => {
-        produto.title = produto.title.replace(/&#8211;/g, '-');
-        return produto;
-      });
-
+    this.jandaiaApiService.getProducts(page, this.s_categoria_produtos).subscribe((products: any[]) => {
       this.products = products;
       this.hasNext = products.length === 10;
       this.sppinerService.hide();
     });
+  }
+
+  async openProduct(produto){
+    const modal = await this.modalCtrl.create({
+      component: ProductDetailsPage,
+      componentProps: {
+        produto: produto
+      }
+    });
+
+    await modal.present();
+
   }
 
 }

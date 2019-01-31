@@ -11,7 +11,10 @@ const routes: Routes = [
   { path: 'blog', loadChildren: './blog/blog.module#BlogPageModule' },
   { path: 'agenda', loadChildren: './agenda/agenda.module#AgendaPageModule' },
   { path: 'about', loadChildren: './about/about.module#AboutPageModule' },
-  { path: 'conta', loadChildren: './conta/conta.module#ContaPageModule' }
+  { path: 'product-details', loadChildren: './product-details/product-details.module#ProductDetailsPageModule' },
+  { path: 'jogo', loadChildren: './jogo/jogo.module#JogoPageModule' },
+  { path: 'minhas-materias', loadChildren: './minhas-materias/minhas-materias.module#MinhasMateriasPageModule' },
+  { path: 'crud-event', loadChildren: './crud-event/crud-event.module#CrudEventPageModule' },
 ];
 
 @NgModule({

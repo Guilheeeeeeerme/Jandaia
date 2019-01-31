@@ -3,9 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavParams } from '@ionic/angular';
 
 import { AgendaPage } from './agenda.page';
+
+import { NgCalendarModule  } from 'ionic2-calendar';
+import { SppinerService } from '../sppiner.service';
 
 const routes: Routes = [
   {
@@ -16,12 +19,14 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    NgCalendarModule,
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    NgCalendarModule,
   ],
-  providers: [],
+  providers: [SppinerService],
   declarations: [AgendaPage]
 })
 export class AgendaPageModule {}
