@@ -15,7 +15,7 @@ export class AppComponent {
     {
       title: 'Produtos Jandaia',
       url: '/produtos',
-      icon: 'book'
+      icon: 'logo-buffer'
     },
     {
       title: 'Calendário de Provas',
@@ -25,12 +25,12 @@ export class AppComponent {
     {
       title: 'Minhas Matérias',
       url: '/minhas-materias',
-      icon: 'calendar'
+      icon: 'grid'
     },
     {
       title: 'Blog',
       url: '/blog',
-      icon: 'folder-open'
+      icon: 'paper'
     },
     {
       title: 'Jogo',
