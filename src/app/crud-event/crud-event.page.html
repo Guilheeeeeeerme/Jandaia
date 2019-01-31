@@ -1,9 +1,78 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>crud-event</ion-title>
+    <ion-title>Compromisso</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select [value]="event.tipo" placeholder="Tipo" [(ngModel)]="event.tipo">
+        <ion-select-option *ngIf="mode != 'Aula'" value="Prova">Prova</ion-select-option>
+        <ion-select-option *ngIf="mode != 'Aula'" value="Trabalho">Trabalho</ion-select-option>
+        <ion-select-option *ngIf="mode == 'Aula'" value="Aula">Aula</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Dia</ion-label>
+      <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="event.dia"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hora</ion-label>
+      <ion-datetime display-format="h:mm A" picker-format="h:mm A" [(ngModel)]="event.hora"></ion-datetime>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Matéria</ion-label>
+      <ion-input clearInput [(ngModel)]="event.materia"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Observações</ion-label>
+      <ion-textarea clearInput [(ngModel)]="event.observacoes"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Notificar?</ion-label>
+      <ion-checkbox [(ngModel)]="event.alerta"></ion-checkbox>
+    </ion-item>
+    
+    <ion-item *ngIf="action == 'create'" >
+        <ion-button color="primary" (click)="adicionar()" expand="full">Adicionar</ion-button>
+    </ion-item>
+    
+    <ion-item>
+        <ion-button color="warning" (click)="sair()" expand="full">Sair</ion-button>
+    </ion-item>
+
+<!-- Expand -->
+
+  </ion-list>
+
+
+  <!-- <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hora</ion-label>
+      <ion-datetime display-format="HH:mm" picker-format="HH:mm"></ion-datetime>
+    </ion-item> -->
+
+  <!-- <pre>{{ event | json }}</pre> -->
+
+  <!-- <h1> {{ event.TipoCompromisso }} </h1>
+    <h1> {{ event.Date }} </h1>
+    <h1> {{ event.Date }} </h1>
+    <h1> {{ event.string }} </h1>
+    <h1> {{ event.string }} </h1>
+    <h1> {{ event.boolean }} </h1> -->
+
 
 </ion-content>

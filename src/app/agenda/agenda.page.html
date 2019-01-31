@@ -10,41 +10,38 @@
     </ion-title>
 
     <ion-buttons slot="end">
-      <button ion-button icon-only (click)="addEvent()">
+      <ion-button (click)="addEvent()">
         <ion-icon name="add"></ion-icon>
-      </button>
+      </ion-button>
     </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <calendar 
-    [eventSource]="eventSource" 
-    [calendarMode]="calendar.mode"
-    [currentDate]="calendar.currentDate"
-    (onEventSelected)="onEventSelected($event)"
-    (onTimeSelected)="onTimeSelected($event)"
-    step="30"
-    class="calendar"
-    >
-  </calendar>
 
-  AGENDA
-+ Adicionar compromisso
-	Tipo: 
-		- Prova
-		- Trabalho
-	Quando:
-		- Data:
-		- Horário:
-	Detalhes:
-		- Matéria:
-			- Matemática
-			- Português
-		- Observações:
+  <ion-list>
 
-Criar alerta [  ] SIM
+    <ion-item *ngIf="!events || events.length == 0">
+      <ion-label> Nenhum compromisso registrado</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="!events || events.length == 0">
+      <ion-button (click)="addEvent()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item *ngFor="let event of events">
+      <div slot="start" color="danger" (click)="updateEvent(event)">
+        <ion-label>{{ event.tipo }}</ion-label>
+        <p>{{ event.dia }} {{ event.hora }}</p>
+      </div>
+      <ion-button slot="end" color="danger" (click)="deleteEvent(event)">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
 
 
 </ion-content>

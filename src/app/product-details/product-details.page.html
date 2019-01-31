@@ -1,8 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
 
-    <ion-buttons slot="start" (click)="close()">
+    <ion-buttons slot="start">
+      <button ion-button icon-only (click)="close()">
         <ion-icon name="arrow-round-back"></ion-icon>
+      </button>
     </ion-buttons>
 
     <ion-title>{{ productDetails?.title | hifenissue }}</ion-title>

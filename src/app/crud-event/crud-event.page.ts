@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Compromisso } from '../model/compromisso.model';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-crud-event',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrudEventPage implements OnInit {
 
-  constructor() { }
+  action;
+  mode;
+  event: Compromisso;
+
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
+  }
+
+  async adicionar() {
+    this.modalCtrl.dismiss({
+      action: 'create',
+      event: this.event
+    });
+  }
+
+  sair() {
+    this.modalCtrl.dismiss({
+      action: 'dismiss',
+      event: this.event
+    });
   }
 
 }
