@@ -33,13 +33,13 @@
     </ion-item>
 
     <ion-grid *ngFor="let dayOfWeek of [0, 1, 2, 3, 4, 5, 6]">
-      <ion-label>{{ getDayOfWeek(dayOfWeek)  }}</ion-label>
+      <ion-label class="dayTitle">{{ getDayOfWeek(dayOfWeek)  }}</ion-label>
       <ion-row ion-item *ngFor="let event of organize(events, dayOfWeek)">
-        <ion-col size="10" (click)="updateEvent(event)">
+        <ion-col size="10" (click)="updateEvent(event)" no-padding>
           <ion-label>{{ event.tipo }} de {{ event.materia }}</ion-label>
           <p>{{ event.at | date : full }}</p>
         </ion-col>
-        <ion-col size="2">
+        <ion-col size="2" no-padding>
           <ion-buttons>
             <ion-button ion-button icon-only color="danger" (click)="deleteEvent(event)">
               <ion-icon name="close"></ion-icon>
@@ -47,6 +47,7 @@
           </ion-buttons>
         </ion-col>
       </ion-row>
+      <ion-item-divider></ion-item-divider> 
     </ion-grid>
 
   </ion-list>

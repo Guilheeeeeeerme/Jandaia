@@ -57,17 +57,19 @@
       <ion-checkbox [(ngModel)]="event.alerta"></ion-checkbox>
     </ion-item>
 
-    <ion-item *ngIf="action == 'create'">
-      <ion-button color="primary" (click)="adicionar()" expand="full">Adicionar</ion-button>
+  </ion-list>
+
+    <ion-item float-right no-lines *ngIf="action == 'create'">
+      <ion-button no-lines color="primary" (click)="adicionar()" expand="full">Adicionar</ion-button>
     </ion-item>
 
-    <ion-item>
-      <ion-button color="warning" (click)="sair()" expand="full">Sair</ion-button>
+    <ion-item float-left no-lines> 
+      <ion-button no-lines color="warning" (click)="sair()" expand="full">Sair</ion-button>
     </ion-item>
 
     <!-- Expand -->
 
-  </ion-list>
+
 
 
   <!-- <ion-item>
