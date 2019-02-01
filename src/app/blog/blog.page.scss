@@ -35,11 +35,23 @@
     background-size: 100% auto;
 }
 
+.bg_login {
+	background-image: url('../../assets/imgs/bg_login.png');
+	background-position: center top;
+    background-size: 100% auto;
+}
+
 .bgTransparency{
 	background-color: rgba(255 ,255 ,255 , 0.7);
+	margin-top: 22%;
+    margin-bottom: 12%;
 }
 
 .chamadaJandaia{
 	text-align: center;
 	font-size:1.2rem;
+}
+
+.postTitle {
+	color: #555555;
 }

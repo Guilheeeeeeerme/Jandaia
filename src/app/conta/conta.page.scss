@@ -10,8 +10,7 @@
     }
     ion-content {
       padding: 0px;
-      background-image: url('../../assets/imgs/bg_login.png');
-      background-size: cover;
+
     }
     
     ion-input {
@@ -22,6 +21,12 @@
         -moz-border-radius: 50px;
         -webkit-border-radius: 50px;
         border-radius: 10px;
+    }
+
+    .bgImage {
+      background-image: url('../../assets/imgs/bg_login.png') !important;
+      background-position: center top;
+      background-size: 100% auto;
     }
     
     .acessarBtn {
