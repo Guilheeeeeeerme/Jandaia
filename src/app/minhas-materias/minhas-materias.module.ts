@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { MinhasMateriasPage } from './minhas-materias.page';
 import { SppinerService } from '../sppiner.service';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  providers: [SppinerService],
+  providers: [SppinerService, LocalNotifications],
   declarations: [MinhasMateriasPage]
 })
 export class MinhasMateriasPageModule {}

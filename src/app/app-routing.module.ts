@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'jogo', loadChildren: './jogo/jogo.module#JogoPageModule' },
   { path: 'minhas-materias', loadChildren: './minhas-materias/minhas-materias.module#MinhasMateriasPageModule' },
   { path: 'crud-event', loadChildren: './crud-event/crud-event.module#CrudEventPageModule' },
+  { path: 'conta', loadChildren: './conta/conta.module#ContaPageModule' },
 ];
 
 @NgModule({

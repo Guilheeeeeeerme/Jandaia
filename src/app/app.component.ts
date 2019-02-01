@@ -18,6 +18,11 @@ export class AppComponent {
       icon: 'logo-buffer'
     },
     {
+      title: 'Conta',
+      url: '/conta',
+      icon: 'contact'
+    },
+    {
       title: 'Calendário de Provas',
       url: '/agenda',
       icon: 'calendar'

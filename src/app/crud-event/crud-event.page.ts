@@ -12,10 +12,27 @@ export class CrudEventPage implements OnInit {
   action;
   mode;
   event: Compromisso;
+  eventDia: any;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController) {
+  }
 
   ngOnInit() {
+  }
+
+  dataChanged(dayOfTheWeek) {
+    this.fizDate(dayOfTheWeek);
+    this.fizDate(dayOfTheWeek);
+  }
+
+  fizDate(dayOfTheWeek) {
+    const at: Date = new Date(this.event.at);
+    const currentDay = at.getDay();
+    console.log(currentDay, at);
+    const distance = dayOfTheWeek - currentDay;
+    at.setDate(at.getDate() + distance);
+
+    this.event.at = new Date(at).toISOString();
   }
 
   async adicionar() {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { SppinerService } from '../sppiner.service';
 
 @Component({
   selector: 'app-conta',
@@ -8,15 +8,10 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 })
 export class ContaPage implements OnInit {
 
-  constructor(private fb: Facebook) { }
+  constructor(private sppinerService: SppinerService) { }
 
   ngOnInit() {
-  }
-
-  loginFb() {
-    this.fb.login(['public_profile', 'user_friends', 'email'])
-      .then((res: FacebookLoginResponse) => console.log('Logged into Facebook!', res))
-      .catch(e => console.log('Error logging into Facebook', e));
+    this.sppinerService.hide();
   }
 
 }
