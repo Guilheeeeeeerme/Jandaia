@@ -48,7 +48,9 @@ export class AgendaPage implements OnInit {
       this.events.push(cb.data.event);
 
       const compromisso: Compromisso = (cb.data.event as Compromisso);
-      Compromisso.schedule(compromisso, this.localNotifications);
+      const schedule = Compromisso.schedule(compromisso);
+      this.localNotifications.schedule(schedule);
+
     }
 
     localStorage.setItem(this.path, JSON.stringify(this.events));
@@ -68,7 +70,8 @@ export class AgendaPage implements OnInit {
     const cb: any = await modal.onDidDismiss();
 
     const compromisso: Compromisso = (cb.data.event as Compromisso);
-    Compromisso.schedule(compromisso, this.localNotifications);
+    const schedule = Compromisso.schedule(compromisso);
+    this.localNotifications.schedule(schedule);
 
     localStorage.setItem(this.path, JSON.stringify(this.events));
 
@@ -81,21 +84,11 @@ export class AgendaPage implements OnInit {
     });
   }
 
-  getDayOfWeek(dayOfWeek) {
-    return [
-      'Domingo',
-      'Segunda Feira',
-      'Terça Feira',
-      'Quarta Feira',
-      'Quinta Feira',
-      'Sexta Feira',
-      'Sábado'
-    ][dayOfWeek];
-  }
-
-  organize(events, dayOfWeek) {
+  organize(events) {
     return events.filter((event) => {
-      return new Date(event).getDay() === dayOfWeek;
+      return new Date(event.at).getTime() > new Date().getTime();
+    }).sort((eventA, eventB) => {
+      return new Date(eventA.at).getTime() - new Date(eventB.at).getTime();
     });
   }
 

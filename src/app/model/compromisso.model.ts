@@ -1,10 +1,3 @@
-import { LocalNotifications } from "@ionic-native/local-notifications/ngx";
-
-// export enum TipoCompromisso {
-//     Prova,
-//     Trabalho,
-//     Materia,
-// }
 
 const uuidv1 = require('uuid/v1');
 
@@ -20,44 +13,39 @@ export class Compromisso {
         this.id = uuidv1();
     }
 
-    public static schedule(compromisso: Compromisso, localNotification: LocalNotifications) {
+    public static schedule(compromisso: Compromisso) {
 
-        localNotification.cancel(compromisso.id).finally(() => {
-            try {
-                if (compromisso.alerta) {
+        const id = +compromisso.id.replace(/[^0-9]/g, '');
+        const at: Date = new Date(compromisso.at);
+        const schedule: any = {
+            id: id,
+            title: compromisso.tipo + ' de ' + compromisso.materia,
+            text: compromisso.at,
+            trigger: {
+                at: at,
+            },
+            foreground: true
+        };
 
-                    const at: Date = new Date(compromisso.at);
+        if (compromisso.tipo === 'Aula') {
+            schedule.every = 'week';
+        }
 
-                    if (compromisso.tipo === 'Aula') {
+        return schedule;
 
-                        localNotification.schedule({
-                            id: compromisso.id,
-                            title: ' - ' + compromisso.tipo + ' de ' + compromisso.materia,
-                            text: compromisso.at,
-                            every: 'week',
-                            trigger: {
-                                at: at,
-                            }
-                        });
-                    } else {
+        // if (compromisso.alerta) {
+        // localNotification.schedule(schedule);
+        // }
 
-                        localNotification.schedule({
-                            id: compromisso.id,
-                            title: ' - ' + compromisso.tipo + ' de ' + compromisso.materia,
-                            text: compromisso.at,
-                            trigger: {
-                                at: at,
-                            }
-                        });
+        // const cancelPrevious = localNotification.cancel(id);
 
-                    }
-                }
+        // cancelPrevious.then(() => console.log(id, 'Foi cancelado.'));
+        // cancelPrevious.catch(() => console.log(id, 'Nao foi cancelado.'));
 
-            } catch (e) {
+        // cancelPrevious.finally(() => {
 
-            }
 
-        });
+        // });
     }
 
 }

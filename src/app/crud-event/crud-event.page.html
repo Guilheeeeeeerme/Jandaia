@@ -6,8 +6,6 @@
 
 <ion-content padding>
 
-  <pre>{{ event | json }}</pre>
-
   <ion-list>
 
     <ion-item>
@@ -19,13 +17,25 @@
       </ion-select>
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="mode != 'Aula'" >
       <ion-label>Dia</ion-label>
 
-      <ion-datetime *ngIf="mode != 'Aula'" display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="event.at"
-        required></ion-datetime>
+      <ion-datetime         
+        display-format="DD/MM/YYYY" 
+        picker-format="DD MMMM YYYY" 
+        [(ngModel)]="event.at"
+        required>
+      </ion-datetime>
 
-      <ion-select *ngIf="mode == 'Aula'" placeholder="Dia da semana" [(ngModel)]="eventDia" (ngModelChange)="dataChanged($event)" required>
+    </ion-item>
+    
+    <ion-item *ngIf="mode == 'Aula'" >
+
+      <ion-select         
+        placeholder="Dia da semana" 
+        [(ngModel)]="dayOfTheWeek" 
+        (ngModelChange)="dayOfTheWeekChanged(dayOfTheWeek)" 
+        required>
         <ion-select-option value="0">Domingo</ion-select-option>
         <ion-select-option value="1">Segunda Feira</ion-select-option>
         <ion-select-option value="2">Terça Feira</ion-select-option>
@@ -34,11 +44,17 @@
         <ion-select-option value="5">Sexta Feira</ion-select-option>
         <ion-select-option value="6">Sábado</ion-select-option>
       </ion-select>
+
     </ion-item>
 
     <ion-item>
       <ion-label>Hora</ion-label>
-      <ion-datetime display-format="h:mm A" picker-format="h:mm A" [(ngModel)]="event.at" required></ion-datetime>
+      <ion-datetime 
+        display-format="h:mm A" 
+        picker-format="h:mm A" 
+        [(ngModel)]="event.at" 
+        required>
+      </ion-datetime>
     </ion-item>
 
 

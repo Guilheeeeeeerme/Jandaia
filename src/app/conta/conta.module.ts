@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ContaPage } from './conta.page';
 import { SppinerService } from '../sppiner.service';
+import { WpLoginService } from '../wp-login.service';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
   ],
   declarations: [ContaPage],
   providers: [
-    SppinerService
+    SppinerService,
+    WpLoginService
   ]
 })
 export class ContaPageModule {}

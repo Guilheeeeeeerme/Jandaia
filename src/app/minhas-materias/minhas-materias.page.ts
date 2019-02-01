@@ -49,7 +49,8 @@ export class MinhasMateriasPage implements OnInit {
       this.events.push(cb.data.event);
 
       const compromisso: Compromisso = (cb.data.event as Compromisso);
-      Compromisso.schedule(compromisso, this.localNotifications);
+      const schedule = Compromisso.schedule(compromisso);
+      this.localNotifications.schedule(schedule);
     }
 
     localStorage.setItem(this.path, JSON.stringify(this.events));
@@ -70,7 +71,8 @@ export class MinhasMateriasPage implements OnInit {
     const cb: any = await modal.onDidDismiss();
 
     const compromisso: Compromisso = (cb.data.event as Compromisso);
-    Compromisso.schedule(compromisso, this.localNotifications);
+    const schedule = Compromisso.schedule(compromisso);
+    this.localNotifications.schedule(schedule);
 
     localStorage.setItem(this.path, JSON.stringify(this.events));
 
