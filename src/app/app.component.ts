@@ -17,11 +17,11 @@ export class AppComponent {
       url: '/produtos',
       icon: 'logo-buffer'
     },
-    {
-      title: 'Conta',
-      url: '/conta',
-      icon: 'contact'
-    },
+    // {
+    //   title: 'Conta',
+    //   url: '/conta',
+    //   icon: 'contact'
+    // },
     {
       title: 'Calendário de Provas',
       url: '/agenda',
