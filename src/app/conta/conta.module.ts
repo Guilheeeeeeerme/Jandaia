@@ -5,14 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MinhasMateriasPage } from './minhas-materias.page';
+import { ContaPage } from './conta.page';
 import { SppinerService } from '../sppiner.service';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 const routes: Routes = [
   {
     path: '',
-    component: MinhasMateriasPage
+    component: ContaPage
   }
 ];
 
@@ -23,7 +22,9 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  providers: [SppinerService, LocalNotifications],
-  declarations: [MinhasMateriasPage]
+  declarations: [ContaPage],
+  providers: [
+    SppinerService
+  ]
 })
-export class MinhasMateriasPageModule {}
+export class ContaPageModule {}

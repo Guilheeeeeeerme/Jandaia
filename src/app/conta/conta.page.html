@@ -1,31 +1,70 @@
 <ion-header>
   <ion-toolbar color="primary">
+
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Conta</ion-title>
+
+    <ion-title text-center>
+      <img class="title-image" alt="logo" height="40" src="assets/images/jandaia.png">
+    </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  
+
   <ion-row>
-  	<ion-col text-center>
-    	<img src="assets/imgs/logo-jandaia-digital.png"/>
+    <ion-col text-center>
+      <img src="assets/imgs/logo-jandaia-digital.png" class="percent60" />
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col text-center style="color:#006699">
+      Faça seu login
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col text-center>
+      <ion-item lines="none">
+        <ion-input type="text" name="user" placeholder="Login"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col text-center>
+      <ion-item lines="none">
+        <ion-input type="password" name="pass" placeholder="Senha"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button class="acessarBtn" type="submit" block>Acessar</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button block (click)="loginFb()" class="loginBtn loginBtn--facebook">
+        Login with Facebook
+      </button>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row>
+    <ion-col text-center class="textBold" style="color:#006699">
+      Ainda não é cadastrado?
     </ion-col>
   </ion-row>
   <ion-row>
-	<ion-col text-center>
-		Faça seu login
-	</ion-col>
+    <ion-col text-center class="textBold" style="color:#006699">
+      <u>Clique aqui</u> e faça o seu cadastro!
+    </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col text-center>
-		<button ion-button block (click)="loginFb()" class="loginBtn loginBtn--facebook">
-    		Login with Facebook
-  		</button>
-  	</ion-col>
-</ion-row>
-
-
 </ion-content>

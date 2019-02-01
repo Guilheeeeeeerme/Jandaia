@@ -1,16 +1,18 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Compromisso</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
+  <pre>{{ event | json }}</pre>
+
   <ion-list>
 
     <ion-item>
       <ion-label>Tipo</ion-label>
-      <ion-select [value]="event.tipo" placeholder="Tipo" [(ngModel)]="event.tipo">
+      <ion-select [value]="event.tipo" placeholder="Tipo" [(ngModel)]="event.tipo" required>
         <ion-select-option *ngIf="mode != 'Aula'" value="Prova">Prova</ion-select-option>
         <ion-select-option *ngIf="mode != 'Aula'" value="Trabalho">Trabalho</ion-select-option>
         <ion-select-option *ngIf="mode == 'Aula'" value="Aula">Aula</ion-select-option>
@@ -19,18 +21,30 @@
 
     <ion-item>
       <ion-label>Dia</ion-label>
-      <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="event.dia"></ion-datetime>
+
+      <ion-datetime *ngIf="mode != 'Aula'" display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="event.at"
+        required></ion-datetime>
+
+      <ion-select *ngIf="mode == 'Aula'" placeholder="Dia da semana" [(ngModel)]="eventDia" (ngModelChange)="dataChanged($event)" required>
+        <ion-select-option value="0">Domingo</ion-select-option>
+        <ion-select-option value="1">Segunda Feira</ion-select-option>
+        <ion-select-option value="2">Terça Feira</ion-select-option>
+        <ion-select-option value="3">Quarta Feira</ion-select-option>
+        <ion-select-option value="4">Quinta Feira</ion-select-option>
+        <ion-select-option value="5">Sexta Feira</ion-select-option>
+        <ion-select-option value="6">Sábado</ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Hora</ion-label>
-      <ion-datetime display-format="h:mm A" picker-format="h:mm A" [(ngModel)]="event.hora"></ion-datetime>
+      <ion-datetime display-format="h:mm A" picker-format="h:mm A" [(ngModel)]="event.at" required></ion-datetime>
     </ion-item>
 
 
     <ion-item>
       <ion-label>Matéria</ion-label>
-      <ion-input clearInput [(ngModel)]="event.materia"></ion-input>
+      <ion-input clearInput [(ngModel)]="event.materia" required></ion-input>
     </ion-item>
 
     <ion-item>
@@ -39,19 +53,19 @@
     </ion-item>
 
     <ion-item>
-        <ion-label>Notificar?</ion-label>
+      <ion-label>Notificar?</ion-label>
       <ion-checkbox [(ngModel)]="event.alerta"></ion-checkbox>
     </ion-item>
-    
-    <ion-item *ngIf="action == 'create'" >
-        <ion-button color="primary" (click)="adicionar()" expand="full">Adicionar</ion-button>
-    </ion-item>
-    
-    <ion-item>
-        <ion-button color="warning" (click)="sair()" expand="full">Sair</ion-button>
+
+    <ion-item *ngIf="action == 'create'">
+      <ion-button color="primary" (click)="adicionar()" expand="full">Adicionar</ion-button>
     </ion-item>
 
-<!-- Expand -->
+    <ion-item>
+      <ion-button color="warning" (click)="sair()" expand="full">Sair</ion-button>
+    </ion-item>
+
+    <!-- Expand -->
 
   </ion-list>
 
