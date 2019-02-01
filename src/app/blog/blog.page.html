@@ -11,7 +11,51 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="fontPrimary">
+
+  <ion-grid class="bg_calendar">
+
+    <ion-row padding>
+      <ion-col></ion-col>
+      <ion-col class="bgTransparency" size="7">
+        <div class="fontBold">Calendário de Provas</div>
+        <div class="fontGrey">
+          <div class="fontBoldLeft">Clique aqui</div> para acessar seu calendário!
+          Seja alertado aos estudos e receba dicas importantes!
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+
+  <ion-grid>
+
+    <ion-row class="chamadaJandaia">
+      <ion-col>
+        <div style="font-weight: bold">Jandaia Educação:</div> 
+        <div>Conteúdos Exclusivos</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="blogPost">
+      <ion-col class="postImg">
+        <img src="assets/imgs/postImg.jpg">
+      </ion-col>
+      <ion-col size="7">
+        <div class="postTitle">15 Janeiro 2019</div>
+        <div class="postBody">
+          <br>NAT GET | Conheça dez lugares dos seus filmes favoritos
+          <br>Revivas cenas icônicas do cinema nos lugares reais onde foram filmadas.
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+
+  </ion-grid>
+
+
 
   <ion-list>
     <ion-item *ngFor="let post of posts">
