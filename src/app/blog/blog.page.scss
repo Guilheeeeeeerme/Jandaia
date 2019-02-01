@@ -1,4 +1,57 @@
 * {
-font-family: LondrinaSolid !important;
-font-weight: normal;
+	font-family: LondrinaSolid !important;
+	font-weight: normal;
+	color: #006699;
+}
+
+.fontPrimary {
+	color: #006699;
+}
+
+.fontGrey {
+	color: #111111 !important;
+}
+
+.fontBoldLeft {
+	font-weight: bold;
+	color: #111111;
+	position: relative; 
+	float: left;
+	margin-right: 3px;
+}
+
+.fontBold {
+	font-weight: bold;
+	color: #006699;
+	position: relative; 
+	float: left;
+	width: 100%;
+	font-size: 1.2rem;
+}
+
+.bg_calendar {
+	background-image: url('../../assets/imgs/fundo-calendar.png');
+	background-position: center top;
+    background-size: 100% auto;
+}
+
+.bg_login {
+	background-image: url('../../assets/imgs/bg_login.png');
+	background-position: center top;
+    background-size: 100% auto;
+}
+
+.bgTransparency{
+	background-color: rgba(255 ,255 ,255 , 0.7);
+	margin-top: 22%;
+    margin-bottom: 12%;
+}
+
+.chamadaJandaia{
+	text-align: center;
+	font-size:1.2rem;
+}
+
+.postTitle {
+	color: #555555;
 }
