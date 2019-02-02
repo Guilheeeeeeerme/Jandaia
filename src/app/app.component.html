@@ -8,26 +8,38 @@
 </div>
 
 <ion-app>
-  <ion-split-pane>
+
+  <app-login-page
+    *ngIf="loginWasChecked && !( fb_isLoggedIn || wp_isLoggedIn )" 
+    (loginWp)='loginWp($event)'
+    (loginFb)='loginFb($event)'    
+  ></app-login-page>
+
+  <ion-split-pane *ngIf="loginWasChecked && (fb_isLoggedIn || wp_isLoggedIn)">
     <ion-menu>
       <ion-header>
 
         <ion-toolbar>
 
-          <div *ngIf="isLoggedIn" text-center>
-            <img class="user-rounded-img" src="{{users.picture.data.url}}" width="100" alt="{{users.name}}" />
-            <ion-title *ngIf="isLoggedIn">Olá, {{users.name}} !</ion-title>
-            <button ion-button block (click)="logoutFb()" class="loginBtn loginBtn--facebook">
-              Sair
-            </button>
+          <div text-center *ngIf="fb_isLoggedIn">
+            <img class="user-rounded-img" src="{{fb_users.picture.data.url}}" width="100" alt="{{fb_users.name}}" />
+            <br/>
           </div>
 
-          <div *ngIf="!isLoggedIn" text-center>
+          <div text-center *ngIf="!fb_isLoggedIn">
             <img class="user-rounded-img" src="assets/images/default-user-image.jpg" width="100" />
             <br/>
-            <button ion-button block (click)="loginFb()" class="loginBtn loginBtn--facebook">
-              Entrar Facebook
-            </button>
+          </div>
+
+          <div text-center *ngIf="wp_isLoggedIn">
+            <h2>Olá, {{wp_users.display_name}} !</h2>
+            <button ion-button block (click)="logoutWp()">Sair</button>
+          </div>
+
+          <div text-center *ngIf="fb_isLoggedIn">
+            <h2>Olá, {{fb_users.name}} !</h2>
+            <!-- class="loginBtn loginBtn--facebook" -->
+            <button ion-button block (click)="logoutFb()">Sair</button>
           </div>
 
         </ion-toolbar>
@@ -48,4 +60,5 @@
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
   </ion-split-pane>
+
 </ion-app>

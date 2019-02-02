@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ post?.title.rendered }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding >
+
+  <div [innerHTML]="transform( post.content.rendered )">
+
+  </div>
+
+</ion-content>

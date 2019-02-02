@@ -8,14 +8,16 @@
     <ion-title text-center>
       <img class="title-image" alt="logo" height="40" src="assets/images/jandaia.png">
     </ion-title>
+
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content class="fontPrimary">
 
   <ion-grid class="bg_calendar">
 
-    <ion-row>
+    <ion-row [routerDirection]="'root'" [routerLink]="'/agenda'">
       <ion-col></ion-col>
       <ion-col float-right class="bgTransparency" size="9">
         <div class="fontBold">Calendário de Provas</div>
@@ -33,58 +35,30 @@
 
     <ion-row class="chamadaJandaia" padding>
       <ion-col>
-        <span style="font-weight: bold; margin-right: 3px">Jandaia Educação:</span> 
+        <span style="font-weight: bold; margin-right: 3px">Jandaia Educação:</span>
         <span>Conteúdos Exclusivos</span>
       </ion-col>
     </ion-row>
 
-    <ion-row class="blogPost">
+
+    <ion-row class="blogPost" *ngFor="let post of posts" (click)="showPostDetails(post)">
+
       <ion-col class="postImg">
-        <img src="assets/imgs/postImg.jpg">
+        <img src="{{post.image || 'https://jandaia.com/novosite/wp-content/themes/jandaia/images/logo-header.png'}}">
       </ion-col>
+
       <ion-col size="8">
-        <div class="postTitle">15 Janeiro 2019</div>
+        <div class="postTitle">{{ post.title.rendered }}</div>
         <div class="postBody">
-          NAT GET | Conheça dez lugares dos seus filmes favoritos
-          <br>Revivas cenas icônicas do cinema nos lugares reais onde foram filmadas.
+          {{ post.date | date: 'medium' }} | <span [innerHTML]="post.excerpt.rendered"></span>
         </div>
       </ion-col>
-    </ion-row>
 
-    <ion-row class="blogPost">
-      <ion-col class="postImg">
-        <img src="assets/imgs/postImg.jpg">
-      </ion-col>
-      <ion-col size="8">
-        <div class="postTitle">15 Janeiro 2019</div>
-        <div class="postBody">
-          NAT GET | Conheça dez lugares dos seus filmes favoritos
-          <br>Revivas cenas icônicas do cinema nos lugares reais onde foram filmadas.
-        </div>
-      </ion-col>
     </ion-row>
-
 
 
   </ion-grid>
 
-
-
-  <ion-list>
-    <ion-item *ngFor="let post of posts">
-      <ion-card class="welcome-card">
-        <ion-img src="{{post.image || 'https://jandaia.com/novosite/wp-content/themes/jandaia/images/logo-header.png'}}"></ion-img>
-        <ion-card-header>
-          <!-- <ion-card-subtitle>Get Started</ion-card-subtitle> -->
-          <ion-card-title>{{ post.title.rendered }}</ion-card-title>
-        </ion-card-header>
-        <!-- <ion-card-content>
-              <p>Now that your app has been created, you'll want to start building out features and components. Check out
-                some of the resources below for next steps.</p>
-            </ion-card-content> -->
-      </ion-card>
-    </ion-item>
-  </ion-list>
 
 </ion-content>
 

@@ -18,6 +18,7 @@ export class CrudEventPage implements OnInit {
 
   actualTime;
   timezoneOffset: number;
+  now: Date;
 
   constructor(private modalCtrl: ModalController) {
     const d = new Date();
@@ -25,9 +26,12 @@ export class CrudEventPage implements OnInit {
   }
 
   ngOnInit() {
+
+    this.now = new Date(new Date().getTime() + (60000 * 5));
+
     try {
       this.event.at = moment.utc(this.event.at).seconds(0).milliseconds(0).zone(this.timezoneOffset).format();
-    } catch (error) {    }
+    } catch (error) { }
 
     this.dayOfTheWeek = new Date(this.event.at).getDay();
   }
@@ -37,6 +41,11 @@ export class CrudEventPage implements OnInit {
     const currentDay = at.getDay();
     console.log(currentDay, at);
     const distance = dayOfTheWeek - currentDay;
+
+    // if (distance < 0) {
+    //   distance += 7;
+    // }
+
     at.setDate(at.getDate() + distance);
 
     this.event.at = new Date(at).toISOString();

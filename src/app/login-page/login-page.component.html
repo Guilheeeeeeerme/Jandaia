@@ -1,10 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
 
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-
     <ion-title text-center>
       <img class="title-image" alt="logo" height="40" src="assets/images/jandaia.png">
     </ion-title>
@@ -13,6 +9,11 @@
 </ion-header>
 
 <ion-content padding class="bgImage">
+  
+  <!-- <pre>{{ fb_isLoggedIn | json }}</pre>
+  <pre>{{ fb_users | json }}</pre>
+  <pre>{{ wp_isLoggedIn | json }}</pre>
+  <pre>{{ wp_users | json }}</pre> -->
 
   <ion-row>
     <ion-col text-center>
@@ -29,7 +30,7 @@
   <ion-row>
     <ion-col text-center>
       <ion-item lines="none">
-        <ion-input type="text" name="user" placeholder="Login"></ion-input>
+        <ion-input type="text" [(ngModel)]="username" name="username" placeholder="Login"></ion-input>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -37,14 +38,14 @@
   <ion-row>
     <ion-col text-center>
       <ion-item lines="none">
-        <ion-input type="password" name="pass" placeholder="Senha"></ion-input>
+        <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Senha"></ion-input>
       </ion-item>
     </ion-col>
   </ion-row>
 
   <ion-row>
     <ion-col text-center>
-      <button ion-button class="acessarBtn" type="submit" block>Acessar</button>
+      <button ion-button (click)="loginWp()" class="acessarBtn" type="submit" block>Acessar</button>
     </ion-col>
   </ion-row>
 

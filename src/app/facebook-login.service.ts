@@ -8,8 +8,7 @@ export class FacebookLoginService {
   isLoggedIn: boolean;
   users: any;
 
-  constructor(private fb: Facebook) {
-  }
+  constructor(private fb: Facebook) {}
 
   getLoginStatus() {
 
@@ -19,17 +18,20 @@ export class FacebookLoginService {
         .then(res => {
           if (res.status === 'connect') {
             this.isLoggedIn = true;
+            this.getUserDetail(res.authResponse.userID).then(() => {
+              resolve(res);
+            }, reject);
           } else {
             this.isLoggedIn = false;
+            resolve(res);
           }
-          resolve(res);
         })
         .catch(e => reject(e));
 
     });
   }
 
-  loginFb() {
+  login() {
 
     return new Promise((resolve, reject) => {
 
@@ -67,7 +69,7 @@ export class FacebookLoginService {
     });
   }
 
-  logoutFb() {
+  logout() {
     return new Promise((resolve, reject) => {
       this.fb.logout()
         .then(res => {

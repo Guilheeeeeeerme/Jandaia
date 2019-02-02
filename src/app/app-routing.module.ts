@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'produtos',
+    redirectTo: 'blog',
     pathMatch: 'full'
   },
   { path: 'produtos', loadChildren: './produtos/produtos.module#ProdutosPageModule' },
@@ -14,8 +14,8 @@ const routes: Routes = [
   { path: 'product-details', loadChildren: './product-details/product-details.module#ProductDetailsPageModule' },
   { path: 'jogo', loadChildren: './jogo/jogo.module#JogoPageModule' },
   { path: 'minhas-materias', loadChildren: './minhas-materias/minhas-materias.module#MinhasMateriasPageModule' },
-  { path: 'crud-event', loadChildren: './crud-event/crud-event.module#CrudEventPageModule' },
-  { path: 'conta', loadChildren: './conta/conta.module#ContaPageModule' },
+  { path: 'crud-event', loadChildren: './crud-event/crud-event.module#CrudEventPageModule' },  { path: 'blog-post', loadChildren: './blog-post/blog-post.module#BlogPostPageModule' }
+
 ];
 
 @NgModule({

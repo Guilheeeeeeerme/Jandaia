@@ -5,14 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ContaPage } from './conta.page';
-import { SppinerService } from '../sppiner.service';
-import { WpLoginService } from '../wp-login.service';
+import { BlogPostPage } from './blog-post.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ContaPage
+    component: BlogPostPage
   }
 ];
 
@@ -23,10 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ContaPage],
-  providers: [
-    SppinerService,
-    WpLoginService
-  ]
+  declarations: [BlogPostPage]
 })
-export class ContaPageModule {}
+export class BlogPostPageModule {}

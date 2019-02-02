@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { JandaiaAPIService } from '../jandaia-api.service';
 import { SppinerService } from '../sppiner.service';
+import { ModalController } from '@ionic/angular';
+import { BlogPostPage } from '../blog-post/blog-post.page';
 
 @Component({
   selector: 'app-blog',
@@ -14,7 +16,10 @@ export class BlogPage implements OnInit {
   hasNext: boolean;
   hasBack: boolean;
 
-  constructor(private jandaiaApiService: JandaiaAPIService, private sppinerService: SppinerService) { }
+  constructor(
+    private modalCtrl: ModalController,
+    private jandaiaApiService: JandaiaAPIService,
+    private sppinerService: SppinerService) { }
 
   ngOnInit() {
     this.page = 1;
@@ -32,6 +37,17 @@ export class BlogPage implements OnInit {
       this.sppinerService.hide();
     });
 
+  }
+
+  async showPostDetails(post) {
+    const modal = await this.modalCtrl.create({
+      component: BlogPostPage,
+      componentProps: {
+        post: post
+      },
+    });
+
+    modal.present();
   }
 
 }

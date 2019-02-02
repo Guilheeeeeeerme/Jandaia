@@ -14,9 +14,14 @@ import { Facebook } from '@ionic-native/facebook/ngx';
 import { FacebookLoginService } from './facebook-login.service';
 import { ProductDetailsPageModule } from './product-details/product-details.module';
 import { CrudEventPageModule } from './crud-event/crud-event.module';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { SppinerService } from './sppiner.service';
+import { BlogPostPageModule } from './blog-post/blog-post.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginPageComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -25,6 +30,9 @@ import { CrudEventPageModule } from './crud-event/crud-event.module';
     HttpClientModule,
     CrudEventPageModule,
     ProductDetailsPageModule,
+    BlogPostPageModule,
+    CommonModule,
+    FormsModule,
   ],
   providers: [
     StatusBar,
@@ -32,7 +40,8 @@ import { CrudEventPageModule } from './crud-event/crud-event.module';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     JandaiaAPIService,
     Facebook,
-    FacebookLoginService
+    FacebookLoginService,
+    SppinerService
   ],
   exports: [],
   bootstrap: [AppComponent]
