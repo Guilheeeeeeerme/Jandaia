@@ -21,8 +21,8 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
 
     // lucas, comenta essa trecho antes de buildar
-    this.username = 'guilherme';
-    this.password = '6(g^O8Q&TMH%Vbwh)(PcUj3Q';
+    // this.username = 'guilherme';
+    // this.password = '6(g^O8Q&TMH%Vbwh)(PcUj3Q';
 
     this.sppinerService.hide();
   }
