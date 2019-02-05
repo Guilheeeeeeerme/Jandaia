@@ -36,11 +36,11 @@ export class AppComponent {
       url: '/blog',
       icon: 'paper'
     },
-    {
-      title: 'Jogo',
-      url: '/jogo',
-      icon: 'logo-game-controller-a'
-    },
+    // {
+    //   title: 'Jogo',
+    //   url: '/jogo',
+    //   icon: 'logo-game-controller-a'
+    // },
     {
       title: 'Sobre nós',
       url: '/about',
