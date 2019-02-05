@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SppinerService } from './sppiner.service';
 import { BlogPostPageModule } from './blog-post/blog-post.module';
+import { RegisterUserPageModule } from './register-user/register-user.module';
 
 @NgModule({
   declarations: [AppComponent, LoginPageComponent],
@@ -29,6 +30,7 @@ import { BlogPostPageModule } from './blog-post/blog-post.module';
     AppRoutingModule,
     HttpClientModule,
     CrudEventPageModule,
+    RegisterUserPageModule,
     ProductDetailsPageModule,
     BlogPostPageModule,
     CommonModule,

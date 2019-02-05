@@ -1,5 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SppinerService } from '../sppiner.service';
+import { ModalController } from '@ionic/angular';
+import { RegisterUserPage } from '../register-user/register-user.page';
+import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 
 @Component({
   selector: 'app-login-page',
@@ -16,7 +19,9 @@ export class LoginPageComponent implements OnInit {
   username: any;
   password: any;
 
-  constructor(private sppinerService: SppinerService) { }
+  constructor(
+    private modalCtrl: ModalController,
+    private sppinerService: SppinerService) { }
 
   ngOnInit() {
 
@@ -34,13 +39,22 @@ export class LoginPageComponent implements OnInit {
       password: this.password
     };
 
-    console.log(data);
+    // console.log(data);
 
     this._loginWp.emit(data);
   }
 
   loginFb() {
     this._loginFb.emit();
+  }
+
+  async registerNewUser() {
+    const modal = await this.modalCtrl.create({
+      component: RegisterUserPage,
+    });
+
+    await modal.present();
+
   }
 
 }
