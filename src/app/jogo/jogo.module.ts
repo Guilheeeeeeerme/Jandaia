@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { JogoPage } from './jogo.page';
 import { SppinerService } from '../sppiner.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  providers: [SppinerService],
+  providers: [SppinerService, ScreenOrientation],
   declarations: [JogoPage]
 })
 export class JogoPageModule {}
