@@ -21,16 +21,13 @@ export class LoginPageComponent implements OnInit {
   password: any;
 
   constructor(
-    private modalCtrl: ModalController,
-    private sppinerService: SppinerService) { }
+    private modalCtrl: ModalController) { }
 
   ngOnInit() {
 
     // lucas, comenta essa trecho antes de buildar
-    // this.username = 'guilherme';
-    // this.password = '6(g^O8Q&TMH%Vbwh)(PcUj3Q';
-
-    this.sppinerService.hide();
+    this.username = 'guilherme';
+    this.password = '6(g^O8Q&TMH%Vbwh)(PcUj3Q';
   }
 
   loginWp() {
@@ -62,7 +59,7 @@ export class LoginPageComponent implements OnInit {
 
     const cb: any = await modal.onDidDismiss();
 
-    if(cb.data){
+    if (cb.data) {
       this._registerWp.emit(cb.data);
     }
 

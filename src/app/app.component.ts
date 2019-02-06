@@ -172,7 +172,6 @@ export class AppComponent {
   registerWp(data) {
     this.sppinerService.show();
     this.wpLoginService.register(data.username, data.email, data.password, () => {
-      this.sppinerService.hide();
 
       this.loginWp({
         username: data.username,
