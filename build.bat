@@ -2,7 +2,7 @@ set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_201
 SET PATH=%PATH%;C:\Program Files\Java\jdk1.8.0_201\bin
 SET PATH=%PATH%;C:\Users\Guilherme\AppData\Local\Android\Sdk\build-tools\28.0.3
 
-ionic cordova build --release android
+REM ionic cordova build --release android
 REM ionic cordova build ios --verbose
 
 REM ionic cordova run android
