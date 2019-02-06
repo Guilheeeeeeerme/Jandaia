@@ -150,20 +150,22 @@ export class AppComponent {
   logoutFb() {
     this.sppinerService.show();
     this.facebookLoginService.logout().then(() => {
-      this.sppinerService.hide();
       this.fb_isLoggedIn = this.facebookLoginService.isLoggedIn;
       this.fb_users = this.facebookLoginService.users;
       this.checkLogin();
+    }).finally(() => {
+      this.sppinerService.hide();
     });
   }
 
   logoutWp() {
     this.sppinerService.show();
     this.wpLoginService.logout().then(() => {
-      this.sppinerService.hide();
       this.wp_isLoggedIn = this.wpLoginService.isLoggedIn;
       this.wp_users = this.wpLoginService.users;
       this.checkLogin();
+    }).finally(() => {
+      this.sppinerService.hide();
     });
   }
 
@@ -190,15 +192,19 @@ export class AppComponent {
       this.sppinerService.hide();
       this.wp_isLoggedIn = !!this.wpLoginService.isLoggedIn;
       this.wp_users = this.wpLoginService.users;
+    }, (error) => {
+      this.sppinerService.hide();
+      this.showError(error);
     });
   }
 
   loginFb() {
     this.sppinerService.show();
     this.facebookLoginService.login().then(() => {
-      this.sppinerService.hide();
       this.fb_isLoggedIn = !!this.facebookLoginService.isLoggedIn;
       this.fb_users = this.facebookLoginService.users;
+    }).finally(() => {
+      this.sppinerService.hide();
     });
   }
 
