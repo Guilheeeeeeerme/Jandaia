@@ -5,8 +5,8 @@ SET PATH=%PATH%;C:\Users\Guilherme\AppData\Local\Android\Sdk\build-tools\28.0.3
 REM ionic cordova build --release android
 REM ionic cordova build ios --verbose
 
-REM ionic cordova run android
-REM exit;
+ionic cordova run android
+exit;
 
 REM del /q /s Jandaia.keystore
 del /q /s jandaia.apk
