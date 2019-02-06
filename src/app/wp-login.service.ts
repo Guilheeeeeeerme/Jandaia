@@ -84,11 +84,11 @@ export class WpLoginService {
       if (callback) {
         callback(users);
       }
-    }, (error => {
+    }, (response => {
       this.logout();
 
       if (errorCallback) {
-        errorCallback(error);
+        errorCallback(response.error);
       }
 
     }));
