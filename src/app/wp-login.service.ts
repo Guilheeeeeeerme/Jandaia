@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WPUsers } from './model/wp_users';
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class WpLoginService {
   users: WPUsers;
   path = 'wp-users';
 
-  private baseUrl = 'http://jandaia.com/wp-json/myplugin/v1/login/';
+  private baseUrl = 'http://jandaia.com/wp-json/myplugin/v1/';
 
   constructor(private _http: HttpClient) { }
 
@@ -43,6 +44,25 @@ export class WpLoginService {
     });
   }
 
+  register(username: any, email: any, password: any, callback?, errorCallback?) {
+
+    this._http.post(this.baseUrl + 'register/', {
+      username: username,
+      email: email,
+      password: password,
+    }).subscribe((response: any) => {
+      if (callback) {
+        callback(response.error);
+      }
+    }, (response => {
+      this.logout();
+
+      if (errorCallback) {
+        errorCallback(response.error);
+      }
+    }));
+  }
+
   login(username: any, password: any, callback?, errorCallback?) {
 
     this.isLoggedIn = false;
@@ -53,7 +73,7 @@ export class WpLoginService {
       password
     }));
 
-    this._http.get(this.baseUrl +
+    this._http.get(this.baseUrl + 'login/' +
       '?username=' + encodeURIComponent(username) +
       '&password=' + encodeURIComponent(password)
     ).subscribe((users: any) => {

@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SppinerService } from '../sppiner.service';
 import { ModalController } from '@ionic/angular';
 import { RegisterUserPage } from '../register-user/register-user.page';
-import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 
 @Component({
   selector: 'app-login-page',
@@ -15,6 +14,8 @@ export class LoginPageComponent implements OnInit {
   @Output('loginWp') _loginWp = new EventEmitter<any>();
   // tslint:disable-next-line:no-output-rename
   @Output('loginFb') _loginFb = new EventEmitter<any>();
+  // tslint:disable-next-line:no-output-rename
+  @Output('registerWp') _registerWp = new EventEmitter<any>();
 
   username: any;
   password: any;
@@ -51,9 +52,19 @@ export class LoginPageComponent implements OnInit {
   async registerNewUser() {
     const modal = await this.modalCtrl.create({
       component: RegisterUserPage,
+      componentProps: {
+        username: this.username,
+        password: this.password,
+      }
     });
 
     await modal.present();
+
+    const cb: any = await modal.onDidDismiss();
+
+    if(cb.data){
+      this._registerWp.emit(cb.data);
+    }
 
   }
 

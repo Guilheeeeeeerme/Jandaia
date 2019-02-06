@@ -10,57 +10,82 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
-
 <ion-content padding class="bgImage">
-  
-  <!-- <pre>{{ fb_isLoggedIn | json }}</pre>
-  <pre>{{ fb_users | json }}</pre>
-  <pre>{{ wp_isLoggedIn | json }}</pre>
-  <pre>{{ wp_users | json }}</pre> -->
 
-  <ion-row>
-    <ion-col text-center>
-      <img src="assets/imgs/logo-jandaia-digital.png" class="percent60" />
-    </ion-col>
-  </ion-row>
+  <form #crudUser="ngForm">
 
-  <ion-row>
-    <ion-col text-center style="color:#006699">
-      Faça seu cadastro
-    </ion-col>
-  </ion-row>
+    <!-- <pre>{{ fb_isLoggedIn | json }}</pre>
+<pre>{{ fb_users | json }}</pre>
+<pre>{{ wp_isLoggedIn | json }}</pre>
+<pre>{{ wp_users | json }}</pre> -->
 
-  <ion-row>
-    <ion-col text-center>
-      <ion-item lines="none">
-        <ion-input type="email" [(ngModel)]="email" name="email" placeholder="E-mail"></ion-input>
-      </ion-item>
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <img src="assets/imgs/logo-jandaia-digital.png" class="percent60" />
+      </ion-col>
+    </ion-row>
 
-  <ion-row>
-    <ion-col text-center>
-      <ion-item lines="none">
-        <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Senha"></ion-input>
-      </ion-item>
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col text-center style="color:#006699">
+        Faça seu cadastro
+      </ion-col>
+    </ion-row>
 
-  <ion-row>
-    <ion-col text-center>
-      <ion-item lines="none">
-        <ion-input type="password" [(ngModel)]="password" name="password_confirm" placeholder="Repita a senha"></ion-input>
-      </ion-item>
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-item lines="none">
+          <ion-input required type="text" [(ngModel)]="username" name="crudUser.username" placeholder="Username"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
 
-  <ion-row>
-    <ion-col text-center>
-      <button ion-button (click)="loginWp()" class="acessarBtn" type="submit" block>Cadastrar</button>
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-item lines="none">
+          <ion-input required type="email" [(ngModel)]="email" name="crudUser.email" placeholder="E-mail"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col text-center>
+        <ion-item lines="none">
+          <ion-input required type="password" [(ngModel)]="password" name="crudUser.password" placeholder="Senha"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-item lines="none">
+          <ion-input required type="password" [(ngModel)]="password_confirm" name="crudUser.password_confirm"
+            placeholder="Repita a senha"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="password_confirm != password">
+      <ion-col text-center>
+        <ion-label>
+          Senhas não coincidem
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-label>
+          todos os campos são obrigatórios
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button (click)="register()" class="acessarBtn" type="submit" block [disabled]="crudUser.invalid" >Cadastrar</button>
+      </ion-col>
+    </ion-row>
+
+  </form>
 
 </ion-content>

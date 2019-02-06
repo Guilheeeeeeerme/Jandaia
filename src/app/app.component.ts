@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { FacebookLoginService } from './facebook-login.service';
@@ -60,7 +60,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private facebookLoginService: FacebookLoginService,
     private wpLoginService: WpLoginService,
-    private sppinerService: SppinerService
+    private sppinerService: SppinerService,
+    private alertCtrl: AlertController
   ) {
     this.initializeApp();
   }
@@ -77,15 +78,15 @@ export class AppComponent {
   }
 
   private checkLogin() {
-    this.loginWasChecked = false;
     this.sppinerService.show();
+    this.loginWasChecked = false;
 
     Promise.all([
       this.checkFb(),
       this.checkWp()
     ]).finally(() => {
-      this.sppinerService.hide();
       this.loginWasChecked = true;
+      this.sppinerService.hide();
       // console.log('fb_checkedLogin: ' + this.fb_checkedLogin);
       // console.log('fb_isLoggedIn: ' + this.fb_isLoggedIn);
       // console.log('fb_users: ' + this.fb_users);
@@ -147,7 +148,9 @@ export class AppComponent {
   }
 
   logoutFb() {
+    this.sppinerService.show();
     this.facebookLoginService.logout().then(() => {
+      this.sppinerService.hide();
       this.fb_isLoggedIn = this.facebookLoginService.isLoggedIn;
       this.fb_users = this.facebookLoginService.users;
       this.checkLogin();
@@ -155,25 +158,59 @@ export class AppComponent {
   }
 
   logoutWp() {
+    this.sppinerService.show();
     this.wpLoginService.logout().then(() => {
+      this.sppinerService.hide();
       this.wp_isLoggedIn = this.wpLoginService.isLoggedIn;
       this.wp_users = this.wpLoginService.users;
       this.checkLogin();
     });
   }
 
+  registerWp(data) {
+    this.sppinerService.show();
+    this.wpLoginService.register(data.username, data.email, data.password, () => {
+      this.sppinerService.hide();
+
+      this.loginWp({
+        username: data.username,
+        password: data.password,
+      });
+      // this.wp_isLoggedIn = !!this.wpLoginService.isLoggedIn;
+      // this.wp_users = this.wpLoginService.users;
+    }, (error) => {
+      this.sppinerService.hide();
+      this.showError(error);
+    });
+  }
+
   loginWp(data) {
+    this.sppinerService.show();
     this.wpLoginService.login(data.username, data.password, () => {
+      this.sppinerService.hide();
       this.wp_isLoggedIn = !!this.wpLoginService.isLoggedIn;
       this.wp_users = this.wpLoginService.users;
     });
   }
 
   loginFb() {
+    this.sppinerService.show();
     this.facebookLoginService.login().then(() => {
+      this.sppinerService.hide();
       this.fb_isLoggedIn = !!this.facebookLoginService.isLoggedIn;
       this.fb_users = this.facebookLoginService.users;
     });
+  }
+
+  async showError(error) {
+
+    const alert = await this.alertCtrl.create({
+      header: 'Erro',
+      message: error.message,
+      buttons: ['Dismiss']
+    });
+
+    await alert.present();
   }
 
 

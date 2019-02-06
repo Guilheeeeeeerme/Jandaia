@@ -7,6 +7,9 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./register-user.page.scss'],
 })
 export class RegisterUserPage implements OnInit {
+  username: any;
+  email: any;
+  password: any;
 
   constructor(private modalCtrl: ModalController) { }
 
@@ -15,6 +18,14 @@ export class RegisterUserPage implements OnInit {
 
   close() {
     this.modalCtrl.dismiss();
+  }
+
+  register() {
+    this.modalCtrl.dismiss({
+      username: this.username,
+      email: this.email,
+      password: this.password,
+    });
   }
 
 }

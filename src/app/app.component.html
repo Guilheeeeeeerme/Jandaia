@@ -12,6 +12,7 @@
   <app-login-page
     *ngIf="loginWasChecked && !( fb_isLoggedIn || wp_isLoggedIn )" 
     (loginWp)='loginWp($event)'
+    (registerWp)='registerWp($event)'
     (loginFb)='loginFb($event)'    
   ></app-login-page>
 
