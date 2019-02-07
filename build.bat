@@ -7,25 +7,24 @@ exit
 
 REM ionic cordova build ios --verbose
 
-ionic cordova run android
-exit
+REM ionic cordova run android
+REM exit
 
-del /q /s Jandaia.keystore
-del /q /s jandaia.apk
-del /q /s ..\jandaia.apk
+REM del /q /s Jandaia.keystore
+del /q /s "C:\Users\Guilherme\Dropbox\Jandaia\jandaia.apk"
 
 cls
 echo 'Keytool !!!'
 pause
 
-keytool.exe ^
--genkey -v ^
--keystore Jandaia.keystore ^
--alias Jandaia ^
--keyalg RSA ^
--keysize 2048 ^
--validity 10000 ^
--dname "CN=Guilherme Ferreira, OU=Development, O=Jandaia, L=Itajub , ST=Minas Gerais, C=BR"
+REM keytool.exe ^
+REM -genkey -v ^
+REM -keystore Jandaia.keystore ^
+REM -alias Jandaia ^
+REM -keyalg RSA ^
+REM -keysize 2048 ^
+REM -validity 10000 ^
+REM -dname "cn=Guilherme Ferreira, ou=Development, o=Jandaia, l=Itajuba , st=Minas Gerais, c=BR"
 
 cls
 echo 'jarsigner !!!'
@@ -35,11 +34,11 @@ jarsigner.exe ^
 -verbose ^
 -sigalg SHA1withRSA ^
 -digestalg SHA1 ^
--keystore Jandaia.keystore "C:\Users\Guilherme\Dropbox\Jandaia\Jandaia\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk" Jandaia
+-keystore Jandaia.keystore "C:\Users\Guilherme\Desktop\Jandaia\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk" Jandaia
 
 cls
 echo 'zipalign !!!'
 pause
 
 zipalign.exe ^
--v 4 "C:\Users\Guilherme\Dropbox\Jandaia\Jandaia\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk" ..\jandaia.apk
+-v 4 "C:\Users\Guilherme\Desktop\Jandaia\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk" "C:\Users\Guilherme\Dropbox\Jandaia\jandaia.apk"
