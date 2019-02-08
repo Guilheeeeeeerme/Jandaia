@@ -32,7 +32,7 @@ export class AppComponent {
       icon: 'grid'
     },
     {
-      title: 'Blog',
+      title: 'Jandaia Educação',
       url: '/blog',
       icon: 'paper'
     },

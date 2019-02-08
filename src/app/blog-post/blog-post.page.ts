@@ -20,7 +20,7 @@ export class BlogPostPage implements OnInit {
   }
 
   onClick(event) {
-    console.log(event);
+    //console.log(event);
   }
 
   close() {
@@ -43,7 +43,7 @@ export class BlogPostPage implements OnInit {
   }
 
   openLink ($event) {
-    console.log($event);
+    //console.log($event);
   }
 
 }
