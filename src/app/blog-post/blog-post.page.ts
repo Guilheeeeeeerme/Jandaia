@@ -29,14 +29,14 @@ export class BlogPostPage implements OnInit {
 
   transform(style) {
 
-    style = style.replace(
-      /(href)=(".*")/g,
-      '$1="#" onclick="window.open($2, \"_system\", \"location=yes\"); return false;"'
-    );
+    // style = style.replace(
+    //   /(href)=(".*")/g,
+    //   '$1="#" onclick="window.open($2, \"_system\", \"location=yes\"); return false;"'
+    // );
 
     // href="#" onclick="window.open('http://www.starwars.com/', '_system', 'location=yes'); return false;
 
-    console.log(style);
+    // console.log(style);
     return this.sanitizer.bypassSecurityTrustHtml(style);
     // return this.sanitizer.bypassSecurityTrustStyle(style);
     // return this.sanitizer.bypassSecurityTrustXxx(style); - see docs
