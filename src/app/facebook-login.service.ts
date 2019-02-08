@@ -13,25 +13,30 @@ export class FacebookLoginService {
   getLoginStatus() {
 
     return new Promise((resolve, reject) => {
+      this.isLoggedIn = false;
 
       this.fb.getLoginStatus()
         .then(res => {
-          if (res.status === 'connect') {
+          // alert(JSON.stringify(res));
+          if (res.status === 'connect' || res.status === 'connected') {
             this.isLoggedIn = true;
-            this.getUserDetail(res.authResponse.userID).then(() => {
-              resolve(res);
-            }, reject);
+            this.getUserDetail(res.authResponse.userID)
+              .then(resolve)
+              .catch(reject);
           } else {
-            this.isLoggedIn = false;
             resolve(res);
           }
         })
-        .catch(e => reject(e));
+        .catch((e) => {
+          // alert(e.message);
+          reject(e);
+        });
 
     });
   }
 
   login() {
+    this.isLoggedIn = false;
 
     return new Promise((resolve, reject) => {
 
@@ -39,12 +44,11 @@ export class FacebookLoginService {
         .then(res => {
           if (res.status === 'connected') {
             this.isLoggedIn = true;
-            this.getUserDetail(res.authResponse.userID).then(() => {
-              resolve(res);
-            }, reject);
+            this.getUserDetail(res.authResponse.userID)
+              .then(resolve)
+              .catch(reject);
           } else {
-            this.isLoggedIn = false;
-            resolve(res);
+            reject(res);
           }
         })
         .catch(e => reject(e));
@@ -58,9 +62,8 @@ export class FacebookLoginService {
 
       this.fb.api('/' + userID + '/?fields=id,email,name,picture,gender', ['public_profile'])
         .then(res => {
-          console.log(res);
           this.users = res;
-          resolve(res);
+          resolve();
         })
         .catch(e => {
           reject(e);

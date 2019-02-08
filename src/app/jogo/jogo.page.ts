@@ -17,7 +17,7 @@ export class JogoPage implements OnInit, OnDestroy {
     private sppinerService: SppinerService) { }
 
   ngOnInit() {
-    window.open(this.url_do_apk, '_blank');
+    // window.open(this.url_do_apk, '_blank');
     // screen.orientation.lock('landscape');
     // set to landscape
     // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);

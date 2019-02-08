@@ -10,8 +10,8 @@ REM exit
 
 REM ionic cordova build ios --verbose
 
-REM ionic cordova run android
-REM exit
+ionic cordova run android
+exit
 
 REM del /q /s Jandaia.keystore
 del /q /s "C:\Users\Guilherme\Dropbox\Jandaia\jandaia.apk"

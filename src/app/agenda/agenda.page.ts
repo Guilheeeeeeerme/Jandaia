@@ -85,9 +85,12 @@ export class AgendaPage implements OnInit {
   }
 
   organize(events) {
-    return events.filter((event) => {
-      return new Date(event.at).getTime() > new Date().getTime();
-    }).sort((eventA, eventB) => {
+    // return events.filter((event) => {
+    //   return new Date(event.at).getTime() > new Date().getTime();
+    // }).sort((eventA, eventB) => {
+    //   return new Date(eventA.at).getTime() - new Date(eventB.at).getTime();
+    // });
+    return events.sort((eventA, eventB) => {
       return new Date(eventA.at).getTime() - new Date(eventB.at).getTime();
     });
   }

@@ -50,7 +50,8 @@
       <ion-col size="8">
         <div class="postTitle">{{ post.title.rendered }}</div>
         <div class="postBody">
-          {{ post.date | date: 'medium' }} | <span [innerHTML]="post.excerpt.rendered"></span>
+          <p>{{ post.date | date: 'dd/MM/yyyy HH:mm' }}</p>
+          <p [innerHTML]="post.excerpt.rendered"></p>
         </div>
       </ion-col>
 

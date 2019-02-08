@@ -19,6 +19,7 @@ export class CrudEventPage implements OnInit {
   actualTime;
   timezoneOffset: number;
   now: Date;
+  eventAt: any;
 
   constructor(private modalCtrl: ModalController) {
     const d = new Date();
@@ -31,7 +32,10 @@ export class CrudEventPage implements OnInit {
 
     try {
       this.event.at = moment.utc(this.event.at).seconds(0).milliseconds(0).zone(this.timezoneOffset).format();
-    } catch (error) { }
+      this.eventAt = moment.utc(this.event.at).seconds(0).milliseconds(0).zone(this.timezoneOffset).format();
+    } catch (error) {
+      console.log(error);
+    }
 
     this.dayOfTheWeek = new Date(this.event.at).getDay();
   }
@@ -52,15 +56,34 @@ export class CrudEventPage implements OnInit {
   }
 
   async adicionar() {
-    try { this.event.at = moment.utc(this.event.at).zone(this.timezoneOffset).format(); } catch (e) { console.error(e); }
     this.modalCtrl.dismiss({
       action: 'create',
       event: this.event
     });
   }
 
+  hoursChanged() {
+
+    // const eventAt = moment(this.eventAt, 'HH:mm');
+    // const eventAt = moment(this.eventAt).format('HH:mm:ss');
+
+    const hour = moment(this.eventAt).format('HH');
+    const minutes = moment(this.eventAt).format('mm');
+
+    // console.log(eventAt, hour, minutes);
+
+    // console.log([
+    //   moment(eventAt, 'HH:mm').format('HH'),
+    //   moment(eventAt, 'HH:mm').format('mm'),
+    // ]);
+
+    this.event.at = moment(this.event.at)
+      .hours(+hour)
+      .minutes(+minutes)
+      .zone(this.timezoneOffset).format();
+  }
+
   sair() {
-    try { this.event.at = moment.utc(this.event.at).zone(this.timezoneOffset).format(); } catch (e) { console.error(e); }
     this.modalCtrl.dismiss({
       action: 'dismiss',
       event: this.event

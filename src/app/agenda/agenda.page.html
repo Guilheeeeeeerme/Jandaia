@@ -37,7 +37,7 @@
       <ion-row ion-item *ngFor="let event of organize(events)">
           <ion-col size="10" (click)="updateEvent(event)" no-padding>
           <ion-label>{{ event.tipo }} de {{ event.materia }}</ion-label>
-          <p>{{ event.at | date : 'medium' }}</p>
+          <p>{{ event.at | date : 'dd/MM/yyyy HH:mm' }}</p>
         </ion-col>
         <ion-col size="2" no-padding>
           <ion-buttons>

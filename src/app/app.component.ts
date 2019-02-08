@@ -104,6 +104,11 @@ export class AppComponent {
       try {
 
         this.facebookLoginService.getLoginStatus()
+          .catch((e) => {
+            this.showError({
+              message: 'getLoginStatus' + JSON.stringify(e)
+            });
+          })
           .finally(() => {
             this.doneFb();
             resolve();
@@ -149,13 +154,19 @@ export class AppComponent {
 
   logoutFb() {
     this.sppinerService.show();
-    this.facebookLoginService.logout().then(() => {
-      this.fb_isLoggedIn = this.facebookLoginService.isLoggedIn;
-      this.fb_users = this.facebookLoginService.users;
-      this.checkLogin();
-    }).finally(() => {
-      this.sppinerService.hide();
-    });
+    this.facebookLoginService.logout()
+      .then(() => {
+        this.fb_isLoggedIn = this.facebookLoginService.isLoggedIn;
+        this.fb_users = this.facebookLoginService.users;
+        this.checkLogin();
+      })
+      .catch((e) => {
+        this.showError({
+          message: 'logoutFb' + JSON.stringify(e)
+        });
+      }).finally(() => {
+        this.sppinerService.hide();
+      });
   }
 
   logoutWp() {
@@ -199,12 +210,19 @@ export class AppComponent {
 
   loginFb() {
     this.sppinerService.show();
-    this.facebookLoginService.login().then(() => {
-      this.fb_isLoggedIn = !!this.facebookLoginService.isLoggedIn;
-      this.fb_users = this.facebookLoginService.users;
-    }).finally(() => {
-      this.sppinerService.hide();
-    });
+    this.facebookLoginService.login()
+      .then(() => {
+        this.fb_isLoggedIn = !!this.facebookLoginService.isLoggedIn;
+        this.fb_users = this.facebookLoginService.users;
+      })
+      .catch((e) => {
+        this.showError({
+          message: 'loginFb' + JSON.stringify(e)
+        });
+      })
+      .finally(() => {
+        this.sppinerService.hide();
+      });
   }
 
   async showError(error) {

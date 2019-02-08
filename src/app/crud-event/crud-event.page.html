@@ -7,6 +7,7 @@
 <ion-content padding>
 
   <!-- <pre>{{ event | json }}</pre> -->
+  <!-- <pre>{{ eventAt | json }}</pre> -->
 
   <form #crudEvent="ngForm">
 
@@ -23,7 +24,11 @@
 
       <ion-item *ngIf="mode != 'Aula'">
         <ion-label>Dia *</ion-label>
-        <ion-datetime display-format="DD/MM/YYYY" picker-format="DD MMMM YYYY" [(ngModel)]="event.at" name="crudEvent.at"
+        <ion-datetime 
+          display-format="DD/MM/YYYY" 
+          month-names="Janeiro, Fevereiro, Mar\u00e7o, Abril, Maio, Junho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+          month-short-names="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez"
+          picker-format="DD MMM YYYY" [(ngModel)]="event.at" name="crudEvent.at"
           required>
         </ion-datetime>
       </ion-item>
@@ -43,12 +48,18 @@
 
       </ion-item>
 
+      <!-- <ion-item>
+        <ion-label>Hora *</ion-label>
+        <ion-datetime display-format="h:mm A"  picker-format="h:mm A" >
+        </ion-datetime>
+      </ion-item> -->
+
       <ion-item>
         <ion-label>Hora *</ion-label>
-        <ion-datetime display-format="h:mm A" [min]="now" picker-format="h:mm A" [(ngModel)]="event.at" name="crudEvent.at"
-          required>
-        </ion-datetime>
+        <ion-datetime displayFormat="h:mm a" [(ngModel)]="eventAt" (ngModelChange)="hoursChanged(eventAt)" name="crudEvent.at"
+        required></ion-datetime>
       </ion-item>
+      
 
 
       <ion-item>
