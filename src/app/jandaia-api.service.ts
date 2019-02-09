@@ -30,7 +30,7 @@ export class JandaiaAPIService {
 
   getBlogPosts(page: number) {
     const per_page = 10;
-    return this._http.get(this.blogUrl + '?per_page=' + per_page + '&page=' + page);
+    return this._http.get(this.blogUrl + '?per_page=' + per_page + '&page=' + page + '&_embed');
   }
 
   getProductDetails(id: any): any {

@@ -100,7 +100,18 @@
     }
 
     .btnMenu {
-    float: left;
-    position: relative;
-    width: 0;  
+      float: left;
+      position: relative;
+      width: 0;  
+    }
+
+#jogo-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#jogo-content,
+#jogo-content * {
+  overflow: hidden !important;
 }
