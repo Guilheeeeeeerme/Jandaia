@@ -73,10 +73,15 @@ export class WpLoginService {
       password
     }));
 
-    this._http.get(this.baseUrl + 'login/' +
-      '?username=' + encodeURIComponent(username) +
-      '&password=' + encodeURIComponent(password)
-    ).subscribe((users: any) => {
+    // this._http.get(this.baseUrl + 'login/' +
+    //   '?username=' + encodeURIComponent(username) +
+    //   '&password=' + encodeURIComponent(password)
+    // ).subscribe((users: any) => {
+
+    this._http.post(this.baseUrl + 'login/', {
+      username: username,
+      password: password,
+    }).subscribe((users: any) => {
 
       this.isLoggedIn = true;
       this.users = users.data;
