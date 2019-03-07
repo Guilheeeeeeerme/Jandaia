@@ -43,7 +43,7 @@ export class CrudEventPage implements OnInit {
   dayOfTheWeekChanged(dayOfTheWeek) {
     const at: Date = new Date(this.event.at);
     const currentDay = at.getDay();
-    console.log(currentDay, at);
+    // console.log(currentDay, at);
     const distance = dayOfTheWeek - currentDay;
 
     // if (distance < 0) {

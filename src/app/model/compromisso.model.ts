@@ -2,7 +2,6 @@
 const uuidv1 = require('uuid/v1');
 
 export class Compromisso {
-    id: any;
 
     constructor(
         public tipo: string,
@@ -12,6 +11,7 @@ export class Compromisso {
         public alerta: boolean) {
         this.id = uuidv1();
     }
+    id: any;
 
     public static schedule(compromisso: Compromisso) {
 
@@ -21,14 +21,32 @@ export class Compromisso {
             id: id,
             title: compromisso.tipo + ' de ' + compromisso.materia,
             text: compromisso.at,
-            trigger: {
-                at: at,
-            },
             foreground: true
         };
 
         if (compromisso.tipo === 'Aula') {
             schedule.every = 'week';
+
+            const today = new Date();
+            // how many days are between current day (thursday for instance) to sunday, add this difference to this sunday variable
+            const weekday = today.getTime() + this.getDayMillDiff(new Date(at).getDay());
+
+            // convert timestamp to Date so that hours can be adjusted
+            const firstAt: Date = new Date(weekday);
+            firstAt.setHours(
+                new Date(at).getHours(),
+                new Date(at).getMinutes(),
+                0
+            );
+
+            console.log(firstAt);
+
+            schedule.firstAt = firstAt;
+
+        } else {
+            schedule.trigger = {
+                at: at,
+            };
         }
 
         return schedule;
@@ -46,6 +64,18 @@ export class Compromisso {
 
 
         // });
+    }
+
+    private static getDayMillDiff(triggerDay) {
+        let curr = new Date();
+        let dayMillDiff = 0;
+        const dayInMill = 1000 * 60 * 60 * 24;
+        // add a day as long as refday(sunday for instance) is not reached
+        while (curr.getDay() !== triggerDay) {
+            dayMillDiff += dayInMill;
+            curr = new Date(curr.getTime() + dayInMill);
+        }
+        return dayMillDiff;
     }
 
 }
