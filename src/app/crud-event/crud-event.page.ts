@@ -30,6 +30,8 @@ export class CrudEventPage implements OnInit {
 
     this.now = new Date(new Date().getTime() + (60000 * 5));
 
+    this.event.earlier = (!this.event.earlier) ? 0 : this.event.earlier;
+
     try {
       this.event.at = moment.utc(this.event.at).seconds(0).milliseconds(0).zone(this.timezoneOffset).format();
       this.eventAt = moment.utc(this.event.at).seconds(0).milliseconds(0).zone(this.timezoneOffset).format();
@@ -37,7 +39,8 @@ export class CrudEventPage implements OnInit {
       console.log(error);
     }
 
-    this.dayOfTheWeek = new Date(this.event.at).getDay();
+    this.dayOfTheWeek = String(new Date(this.event.at).getDay());
+
   }
 
   dayOfTheWeekChanged(dayOfTheWeek) {

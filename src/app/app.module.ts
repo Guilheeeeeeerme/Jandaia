@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { SppinerService } from './sppiner.service';
 import { BlogPostPageModule } from './blog-post/blog-post.module';
 import { RegisterUserPageModule } from './register-user/register-user.module';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @NgModule({
   declarations: [AppComponent, LoginPageComponent],
@@ -43,6 +44,7 @@ import { RegisterUserPageModule } from './register-user/register-user.module';
     JandaiaAPIService,
     Facebook,
     FacebookLoginService,
+    LocalNotifications,
     SppinerService
   ],
   exports: [],

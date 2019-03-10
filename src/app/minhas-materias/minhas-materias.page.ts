@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { SppinerService } from '../sppiner.service';
 import { Compromisso } from '../model/compromisso.model';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { LocalNotifications, ILocalNotification } from '@ionic-native/local-notifications/ngx';
 import { ModalController } from '@ionic/angular';
 import { CrudEventPage } from '../crud-event/crud-event.page';
+import { JandaiaLocalNotifications } from '../model/JandaiaLocalNotifications';
 
 @Component({
   selector: 'app-minhas-materias',
   templateUrl: './minhas-materias.page.html',
   styleUrls: ['./minhas-materias.page.scss'],
 })
-export class MinhasMateriasPage implements OnInit {
-
-  events: Compromisso[] =  [];
+export class MinhasMateriasPage implements OnInit, JandaiaLocalNotifications {
+  events: Compromisso[] = [];
   path = 'materias-events';
+  allScheduled: any;
 
   constructor(
     private sppinerService: SppinerService,
@@ -24,9 +25,29 @@ export class MinhasMateriasPage implements OnInit {
     try {
       const a = JSON.parse(localStorage.getItem(this.path));
       this.events = a || [];
+      Compromisso.scheduleAll(this.events, this);
+      localStorage.setItem(this.path, JSON.stringify(this.events));
     } catch (error) {
       console.log(error);
     }
+
+    this.localNotifications.hasPermission().then((hasPermission) => {
+      console.log('hasPermission', hasPermission);
+      if (!hasPermission) {
+        this.localNotifications.requestPermission();
+      }
+    });
+
+    // setInterval(() => {
+
+    //   this.localNotifications.getAll()
+    //     .then((allScheduled) => {
+    //       this.allScheduled = allScheduled;
+    //     }).catch((reason) => {
+    //       this.allScheduled = reason;
+    //     });
+
+    // }, 1000);
 
     this.sppinerService.hide();
   }
@@ -47,12 +68,9 @@ export class MinhasMateriasPage implements OnInit {
 
     if (cb.data.action === 'create') {
       this.events.push(cb.data.event);
-
-      const compromisso: Compromisso = (cb.data.event as Compromisso);
-      const schedule = Compromisso.schedule(compromisso);
-      this.localNotifications.schedule(schedule);
     }
 
+    Compromisso.scheduleAll(this.events, this);
     localStorage.setItem(this.path, JSON.stringify(this.events));
 
   }
@@ -70,19 +88,17 @@ export class MinhasMateriasPage implements OnInit {
     await modal.present();
     const cb: any = await modal.onDidDismiss();
 
-    const compromisso: Compromisso = (cb.data.event as Compromisso);
-    const schedule = Compromisso.schedule(compromisso);
-    this.localNotifications.schedule(schedule);
-
+    Compromisso.scheduleAll(this.events, this);
     localStorage.setItem(this.path, JSON.stringify(this.events));
 
   }
 
   deleteEvent(compromisso: Compromisso) {
-    this.localNotifications.cancel(compromisso.id).finally(() => {
-      this.events.splice(this.events.indexOf(compromisso), 1);
-      localStorage.setItem(this.path, JSON.stringify(this.events));
-    });
+    this.events.splice(this.events.indexOf(compromisso), 1);
+    localStorage.setItem(this.path, JSON.stringify(this.events));
+
+    Compromisso.cancelPrematureNotifications(compromisso, this);
+    this.localNotifications.cancel(compromisso.id);
   }
 
   getDayOfWeek(dayOfWeek) {
@@ -103,5 +119,14 @@ export class MinhasMateriasPage implements OnInit {
       return new Date(event.at).getDay() === dayOfWeek;
     });
   }
+
+  schedule(schedule: ILocalNotification): void {
+    this.localNotifications.schedule(schedule);
+  }
+
+  cancel(id: number): Promise<any> {
+    return this.localNotifications.cancel(id);
+  }
+
 
 }

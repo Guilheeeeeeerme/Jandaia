@@ -87,12 +87,6 @@ export class AppComponent {
     ]).finally(() => {
       this.loginWasChecked = true;
       this.sppinerService.hide();
-      // console.log('fb_checkedLogin: ' + this.fb_checkedLogin);
-      // console.log('fb_isLoggedIn: ' + this.fb_isLoggedIn);
-      // console.log('fb_users: ' + this.fb_users);
-      // console.log('wp_checkedLogin: ' + this.wp_checkedLogin);
-      // console.log('wp_isLoggedIn: ' + this.wp_isLoggedIn);
-      // console.log('wp_users: ' + this.wp_users);
     });
 
   }

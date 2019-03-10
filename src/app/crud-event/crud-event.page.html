@@ -24,16 +24,19 @@
 
       <ion-item *ngIf="mode != 'Aula'">
         <ion-label>Dia *</ion-label>
-        <ion-datetime 
-          display-format="DD/MM/YYYY" 
+        <ion-datetime display-format="DD/MM/YYYY"
           month-names="Janeiro, Fevereiro, Mar\u00e7o, Abril, Maio, Junho, Agosto, Setembro, Outubro, Novembro, Dezembro"
-          month-short-names="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez"
-          picker-format="DD MMM YYYY" [(ngModel)]="event.at" name="crudEvent.at"
-          required>
+          month-short-names="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez" picker-format="DD MMM YYYY"
+          [(ngModel)]="event.at" name="crudEvent.at" required>
         </ion-datetime>
       </ion-item>
 
       <ion-item *ngIf="mode == 'Aula'">
+
+          <ion-label>
+            Dia da semana
+          </ion-label>
+  
 
         <ion-select placeholder="Dia da semana *" [(ngModel)]="dayOfTheWeek" name="crudEvent.dayOfTheWeek"
           (ngModelChange)="dayOfTheWeekChanged(dayOfTheWeek)" required>
@@ -56,10 +59,10 @@
 
       <ion-item>
         <ion-label>Hora *</ion-label>
-        <ion-datetime displayFormat="h:mm a" [(ngModel)]="eventAt" (ngModelChange)="hoursChanged(eventAt)" name="crudEvent.at"
-        required></ion-datetime>
+        <ion-datetime displayFormat="h:mm a" [(ngModel)]="eventAt" (ngModelChange)="hoursChanged(eventAt)"
+          name="crudEvent.at" required></ion-datetime>
       </ion-item>
-      
+
 
 
       <ion-item>
@@ -77,6 +80,22 @@
         <ion-checkbox name="crudEvent.alerta" [(ngModel)]="event.alerta"></ion-checkbox>
       </ion-item>
 
+      <ion-item *ngIf="event.alerta">
+
+        <ion-label>
+          Avisar com antecedência
+        </ion-label>
+
+        <ion-select placeholder="Me avise antes" [(ngModel)]="event.earlier" name="crudEvent.event.earlier">
+          <ion-select-option value="120">Duas Horas</ion-select-option>
+          <ion-select-option value="60">Uma Hora</ion-select-option>
+          <ion-select-option value="30">Meia Hora</ion-select-option>
+          <ion-select-option value="15">Quinze Minutos</ion-select-option>
+          <ion-select-option value="0">Na hora</ion-select-option>
+        </ion-select>
+
+      </ion-item>
+
       <ion-item>
         <ion-label>
           * obrigatório
@@ -87,17 +106,17 @@
 
     <ion-item>
 
-        <ion-buttons slot="start" *ngIf="action == 'create'">
-          <ion-button color="warning" (click)="sair()" expand="full" >Sair
-          </ion-button>
-        </ion-buttons>
+      <ion-buttons slot="start" *ngIf="action == 'create'">
+        <ion-button color="warning" (click)="sair()" expand="full">Sair
+        </ion-button>
+      </ion-buttons>
 
       <ion-buttons slot="start" *ngIf="action == 'update'">
         <ion-button color="warning" (click)="sair()" expand="full" [disabled]="crudEvent.invalid">Sair
         </ion-button>
       </ion-buttons>
 
-      <ion-buttons slot="end" *ngIf="action == 'create'" >
+      <ion-buttons slot="end" *ngIf="action == 'create'">
         <ion-button color="primary" (click)="adicionar()" expand="full" [disabled]="crudEvent.invalid">Adicionar
         </ion-button>
       </ion-buttons>
