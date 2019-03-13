@@ -4,14 +4,13 @@ import { Compromisso } from '../model/compromisso.model';
 import { LocalNotifications, ILocalNotification } from '@ionic-native/local-notifications/ngx';
 import { ModalController } from '@ionic/angular';
 import { CrudEventPage } from '../crud-event/crud-event.page';
-import { JandaiaLocalNotifications } from '../model/JandaiaLocalNotifications';
 
 @Component({
   selector: 'app-minhas-materias',
   templateUrl: './minhas-materias.page.html',
   styleUrls: ['./minhas-materias.page.scss'],
 })
-export class MinhasMateriasPage implements OnInit, JandaiaLocalNotifications {
+export class MinhasMateriasPage implements OnInit {
   events: Compromisso[] = [];
   path = 'materias-events';
   allScheduled: any;
@@ -22,11 +21,10 @@ export class MinhasMateriasPage implements OnInit, JandaiaLocalNotifications {
     private localNotifications: LocalNotifications) { }
 
   ngOnInit() {
+
     try {
-      const a = JSON.parse(localStorage.getItem(this.path));
-      this.events = a || [];
-      Compromisso.scheduleAll(this.events, this);
-      localStorage.setItem(this.path, JSON.stringify(this.events));
+      const events = JSON.parse(localStorage.getItem(this.path));
+      this.events = events || [];
     } catch (error) {
       console.log(error);
     }
@@ -37,6 +35,8 @@ export class MinhasMateriasPage implements OnInit, JandaiaLocalNotifications {
         this.localNotifications.requestPermission();
       }
     });
+
+    this.sppinerService.hide();
 
     // setInterval(() => {
 
@@ -49,7 +49,6 @@ export class MinhasMateriasPage implements OnInit, JandaiaLocalNotifications {
 
     // }, 1000);
 
-    this.sppinerService.hide();
   }
 
   async addEvent() {
@@ -67,15 +66,23 @@ export class MinhasMateriasPage implements OnInit, JandaiaLocalNotifications {
     const cb: any = await modal.onDidDismiss();
 
     if (cb.data.action === 'create') {
-      this.events.push(cb.data.event);
-    }
+      const compromisso: Compromisso = cb.data.event;
+      compromisso.id = Compromisso.getId();
 
-    Compromisso.scheduleAll(this.events, this);
-    localStorage.setItem(this.path, JSON.stringify(this.events));
+      this.events.push(compromisso);
+      localStorage.setItem(this.path, JSON.stringify(this.events));
+
+      if (compromisso.alerta) {
+        const schedule: ILocalNotification = Compromisso.buildScheduleObject(compromisso);
+        this.localNotifications.schedule(schedule);
+      }
+
+    }
 
   }
 
   async updateEvent(event: Compromisso) {
+
     const modal = await this.modalCtrl.create({
       component: CrudEventPage,
       componentProps: {
@@ -88,17 +95,51 @@ export class MinhasMateriasPage implements OnInit, JandaiaLocalNotifications {
     await modal.present();
     const cb: any = await modal.onDidDismiss();
 
-    Compromisso.scheduleAll(this.events, this);
-    localStorage.setItem(this.path, JSON.stringify(this.events));
+    Promise.all([
+      this.localNotifications.cancel(event.id),
+      this.localNotifications.clear(event.id),
+    ]).finally(() => {
+
+      const compromisso: Compromisso = cb.data.event;
+
+      if (isNaN(compromisso.id)) {
+        compromisso.id = Compromisso.getId();
+      }
+
+      this.events = this.events.map((e) => {
+        if (+e.id === +compromisso.id) {
+          return compromisso;
+        } else {
+          return e;
+        }
+      });
+
+      localStorage.setItem(this.path, JSON.stringify(this.events));
+
+      if (compromisso.alerta) {
+        const schedule: ILocalNotification = Compromisso.buildScheduleObject(compromisso);
+        this.localNotifications.schedule(schedule);
+      }
+
+    });
 
   }
 
-  deleteEvent(compromisso: Compromisso) {
-    this.events.splice(this.events.indexOf(compromisso), 1);
-    localStorage.setItem(this.path, JSON.stringify(this.events));
+  deleteEvent(event: Compromisso) {
 
-    Compromisso.cancelPrematureNotifications(compromisso, this);
-    this.localNotifications.cancel(compromisso.id);
+    Promise.all([
+      this.localNotifications.cancel(event.id),
+      this.localNotifications.clear(event.id),
+    ]).finally(() => {
+
+      this.events = this.events.filter((compromisso) => {
+        return +compromisso.id !== +event.id;
+      });
+
+      localStorage.setItem(this.path, JSON.stringify(this.events));
+
+    });
+
   }
 
   getDayOfWeek(dayOfWeek) {
@@ -115,17 +156,8 @@ export class MinhasMateriasPage implements OnInit, JandaiaLocalNotifications {
 
   organize(events, dayOfWeek) {
     return events.filter((event) => {
-      // console.log(new Date(event.at).getDay(), dayOfWeek)
       return new Date(event.at).getDay() === dayOfWeek;
     });
-  }
-
-  schedule(schedule: ILocalNotification): void {
-    this.localNotifications.schedule(schedule);
-  }
-
-  cancel(id: number): Promise<any> {
-    return this.localNotifications.cancel(id);
   }
 
 
