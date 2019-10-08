@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BASE_URL } from './constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JandaiaAPIService {
 
-  private baseUrl = 'http://jandaia.com/wp-json/myplugin/v1/products/';
-  private detailsUrl = 'http://jandaia.com/wp-json/myplugin/v1/product-details/';
-  private blogUrl = 'http://jandaia.com/wp-json/wp/v2/posts';
+  private baseUrl = `${BASE_URL}/myplugin/v1/products/`;
+  private detailsUrl = `${BASE_URL}/myplugin/v1/product-details/`;
+  private blogUrl = `${BASE_URL}/wp/v2/posts`;
 
   constructor(private _http: HttpClient) { }
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { WPUsers } from './model/wp_users';
 import { AlertController } from '@ionic/angular';
+import { BASE_URL } from './constants';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class WpLoginService {
   users: WPUsers;
   path = 'wp-users';
 
-  private baseUrl = 'http://jandaia.com/wp-json/myplugin/v1/';
+  private baseUrl = `${BASE_URL}/myplugin/v1/`;
 
   constructor(private _http: HttpClient) { }
 

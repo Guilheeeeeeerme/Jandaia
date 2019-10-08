@@ -1,11 +1,11 @@
 
-export JAVA_HOME = C:\Program Files\Java\jdk1.8.0_201
-export PATH := $(PATH);C:\Program Files\Java\jdk1.8.0_201\bin
-export PATH := $(PATH);C:\Users\Guilherme\AppData\Local\Android\Sdk\build-tools\28.0.3
+export JAVA_HOME = C:\Program Files\Java\jdk1.8.0_181
+export PATH := $(PATH);C:\Program Files\Java\jdk1.8.0_181\bin
+export PATH := $(PATH);C:\Users\Guilherme\AppData\Local\Android\Sdk\build-tools\29.0.2
 
 # set-path:
-# 	SET JAVA_HOME=C:\Program Files\Java\jdk1.8.0_201
-# 	SET PATH=%PATH%;C:\Program Files\Java\jdk1.8.0_201\bin
+# 	SET JAVA_HOME=C:\Program Files\Java\jdk1.8.0_181
+# 	SET PATH=%PATH%;C:\Program Files\Java\jdk1.8.0_181\bin
 # 	SET PATH=%PATH%;C:\Users\Guilherme\AppData\Local\Android\Sdk\build-tools\28.0.3
 	
 setup:
@@ -19,13 +19,13 @@ build-apk:
 	ionic cordova build --release android
 
 generate-apk:
-	del /q /s "C:\Users\Guilherme\Dropbox\Jandaia\jandaia.apk" || true
+	del /q /s "C:\Users\Guilherme\Dropbox\Jandaia2\jandaia.apk" || true
 	jarsigner.exe -verbose \
 		-sigalg SHA1withRSA \
 		-digestalg SHA1 \
 		-keystore Jandaia.keystore "C:\Users\Guilherme\Desktop\Jandaia\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk" Jandaia
 	zipalign.exe \
-		-v 4 "C:\Users\Guilherme\Desktop\Jandaia\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk" "C:\Users\Guilherme\Dropbox\Jandaia\jandaia.apk"
+		-v 4 "C:\Users\Guilherme\Desktop\Jandaia\platforms\android\app\build\outputs\apk\release\app-release-unsigned.apk" "C:\Users\Guilherme\Dropbox\Jandaia2\jandaia.apk"
 
 build-final: build-apk generate-apk
 

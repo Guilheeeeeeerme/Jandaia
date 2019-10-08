@@ -10,7 +10,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 export class JogoPage implements OnInit, OnDestroy {
 
   url_do_jogo = 'http://felipegamedev.com/games/jandaia/';
-  url_do_apk = 'https://jandaia.com/novosite/wp-content/uploads/2019/02/Jandaia_jogo.apk';
+  url_do_apk = 'https://jandaia.com/wp-content/uploads/2019/02/Jandaia_jogo.apk';
 
   constructor(
     private screenOrientation: ScreenOrientation,
