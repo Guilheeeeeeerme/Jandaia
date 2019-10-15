@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "396139587834",
+    "firebase_url": "https://teste-f1b17.firebaseio.com",
+    "project_id": "teste-f1b17",
+    "storage_bucket": "teste-f1b17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396139587834:android:7a349830e05c5dc4",
+        "android_client_info": {
+          "package_name": "com.br.app.jandaia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396139587834-249v27g8tb7arjioli0gudg92kiqagil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3upL8BKfeSxjwW6hP0Rz-MRc2p-aLXQg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396139587834:android:3590dfba74d7ed18",
+        "android_client_info": {
+          "package_name": "com.lema.jandaia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396139587834-249v27g8tb7arjioli0gudg92kiqagil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3upL8BKfeSxjwW6hP0Rz-MRc2p-aLXQg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
