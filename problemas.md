@@ -32,8 +32,9 @@ Adicione Isso:
 # 3 ITMS-90809: Deprecated API Usage
 Esse link sugeriu usar o capacitor ao invez do cordova
 https://ionicframework.com/blog/understanding-itms-90809-uiwebview-api-deprecation/
+https://capacitor.ionicframework.com/docs/ios/
 
-Ai a pessoa com xcode por favor tente 
+NÃO TENHO XCODE PARA EXECUTAR ESSES PASSOS
 
 
 
