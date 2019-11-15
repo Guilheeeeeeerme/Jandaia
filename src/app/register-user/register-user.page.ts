@@ -10,6 +10,7 @@ export class RegisterUserPage implements OnInit {
   username: any;
   email: any;
   password: any;
+  password_confirm: any;
 
   constructor(private modalCtrl: ModalController) { }
 
