@@ -29,6 +29,13 @@ Adicione Isso:
 <key>NSCalendarsUsageDescription</key>
 <string>This app need to access your calendar events</string>
 
+# 3 ITMS-90809: Deprecated API Usage
+Esse link sugeriu usar o capacitor ao invez do cordova
+https://ionicframework.com/blog/understanding-itms-90809-uiwebview-api-deprecation/
+
+Ai a pessoa com xcode por favor tente 
+
+
 
 
 
